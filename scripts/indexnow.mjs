@@ -65,11 +65,13 @@ const rankings = [
   `${BASE_URL}/rankings/review.html`,
 ];
 const feed = `${BASE_URL}/feed.xml`;
+const trustPages = [`${BASE_URL}/methodology/`, `${BASE_URL}/updates/`];
 const allCurrentDetailUrls = current.map(item => detailUrl(item.id));
 const allCategoryUrls = categoryUrls(current);
 const forceFullSubmission = !previous || files.some(file => [
   'scripts/build.mjs',
   'scripts/augment.mjs',
+  'scripts/trust-pages.mjs',
   'scripts/indexnow.mjs',
   'package.json',
 ].includes(file));
@@ -79,6 +81,7 @@ if (forceFullSubmission) {
   rankings.forEach(url => urls.add(url));
   allCategoryUrls.forEach(url => urls.add(url));
   allCurrentDetailUrls.forEach(url => urls.add(url));
+  trustPages.forEach(url => urls.add(url));
   urls.add(feed);
 } else {
   if (files.some(file => ['index.html', 'app.js'].includes(file))) {
@@ -94,12 +97,14 @@ if (forceFullSubmission) {
     rankings.forEach(url => urls.add(url));
     allCategoryUrls.forEach(url => urls.add(url));
     allCurrentDetailUrls.forEach(url => urls.add(url));
+    trustPages.forEach(url => urls.add(url));
   }
 
   if (files.includes('data/opportunities.json')) {
     urls.add(`${BASE_URL}/`);
     rankings.forEach(url => urls.add(url));
     allCategoryUrls.forEach(url => urls.add(url));
+    trustPages.forEach(url => urls.add(url));
     urls.add(feed);
 
     const oldMap = new Map(previous.map(item => [item.id, JSON.stringify(item)]));
@@ -108,6 +113,10 @@ if (forceFullSubmission) {
     for (const id of ids) {
       if (oldMap.get(id) !== newMap.get(id)) urls.add(detailUrl(id));
     }
+  }
+
+  if (files.some(file => file.startsWith('data/monitoring/'))) {
+    urls.add(`${BASE_URL}/updates/`);
   }
 }
 
