@@ -67,6 +67,7 @@ const rankings = [
 const feed = `${BASE_URL}/feed.xml`;
 const trustPages = [`${BASE_URL}/methodology/`, `${BASE_URL}/updates/`];
 const discoveryPage = `${BASE_URL}/discovery/`;
+const pilotPage = `${BASE_URL}/pilots/`;
 const allCurrentDetailUrls = current.map(item => detailUrl(item.id));
 const allCategoryUrls = categoryUrls(current);
 const forceFullSubmission = !previous || files.some(file => [
@@ -74,6 +75,7 @@ const forceFullSubmission = !previous || files.some(file => [
   'scripts/augment.mjs',
   'scripts/discovery-page.mjs',
   'scripts/trust-pages.mjs',
+  'scripts/pilots.mjs',
   'scripts/indexnow.mjs',
   'package.json',
 ].includes(file));
@@ -85,6 +87,7 @@ if (forceFullSubmission) {
   allCurrentDetailUrls.forEach(url => urls.add(url));
   trustPages.forEach(url => urls.add(url));
   urls.add(discoveryPage);
+  urls.add(pilotPage);
   urls.add(feed);
 } else {
   if (files.some(file => ['index.html', 'app.js'].includes(file))) {
@@ -102,6 +105,7 @@ if (forceFullSubmission) {
     allCurrentDetailUrls.forEach(url => urls.add(url));
     trustPages.forEach(url => urls.add(url));
     urls.add(discoveryPage);
+    urls.add(pilotPage);
   }
 
   if (files.includes('data/opportunities.json')) {
@@ -125,6 +129,10 @@ if (forceFullSubmission) {
 
   if (files.some(file => file === 'data/discovery_queue.json' || file.startsWith('data/discovery/'))) {
     urls.add(discoveryPage);
+  }
+
+  if (files.includes('data/pilots.json') || files.includes('scripts/pilots.mjs')) {
+    urls.add(pilotPage);
   }
 }
 
