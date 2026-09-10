@@ -1,22 +1,63 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "generated_at": "2026-09-10T12:32:15Z",
   "candidates": [
     {
       "id": "signal-a7fc1a223c90",
-      "title": "DeNetPRO/Node — DeNet Storage is a decentralized cloud storage powered by users and Datakeepers who rent out their disk space. Datakeepers can earn rewards by providing storage capacity and sending proofs of stored data. This repository pro",
+      "title": "DeNet Watcher Node",
       "candidate_url": "https://github.com/DeNetPRO/Node",
       "source_id": "github-depin",
       "source_name": "GitHub: DePIN signal",
       "signal_type": "github_search",
       "trust": "community_signal",
       "signal_strength": 2,
-      "reason": "Recently updated public repo matching discovery query; stars=79. Community signal only.",
-      "status": "REVIEW_REQUIRED",
-      "score_status": "NOT_SCORED",
-      "official_verification_required": true,
+      "reason": "Recently updated public DeNet repository triggered discovery; the free Watcher route was then checked against current first-party DeNet sources.",
+      "status": "REVIEWED_WATCH",
+      "score_status": "SCORED",
+      "official_verification_required": false,
       "discovered_at": "2026-09-10",
-      "last_seen_at": "2026-09-10"
+      "last_seen_at": "2026-09-10",
+      "reviewed_at": "2026-09-10",
+      "decision": "WATCH",
+      "promotion_ready": false,
+      "required_funds_yen": 0,
+      "potential_value_yen": null,
+      "reward_label": "$WN / DeNet token airdrop eligibility等（具体価値・配布額は未確定）",
+      "mobile": "yes",
+      "risk_label": "2〜3 / 5（報酬不確実・アプリ/ウォレット・条件未確定）",
+      "conversion_route": "スマホWatcher稼働/活動実績 → $WN・資格実績 → 将来DeNet token airdrop等（不確定）",
+      "score": 77,
+      "score_components": {
+        "initial_cost": 20,
+        "expected_value": 8,
+        "risk": 9,
+        "time_efficiency": 14,
+        "reproducibility": 9,
+        "compoundability": 8,
+        "automation": 4,
+        "mobile": 5
+      },
+      "verified_facts": [
+        "DeNetの現行Node SaleページではWatcher Nodeをfree mobile nodeとしてDatakeeperと区別している",
+        "DeNet公式Xは2026-08-11時点でもWatcher Nodeをスマートフォンのearning nodeとして案内している",
+        "DeNet公式Xは2026-07-22にWatcher NodeのDaily Streaks稼働を案内している",
+        "DeNet公式Xは2026-06-07にDeNet token airdrop資格条件としてWatcher Node Stage 10とBasic Web 3.0 Courseを案内した",
+        "Datakeeper Nodeは公式Docs上、Node Saleで購入が必要であり、この0円候補には含めない"
+      ],
+      "unresolved": [
+        "日本居住者向けの現在の報酬対象条件",
+        "Watcher報酬の具体的な換金価値・配布額・時期",
+        "報酬受領時のKYC有無とウォレット条件",
+        "現行アプリ内でStage/Watcherを開始する正確な手順"
+      ],
+      "official_sources": [
+        "https://nodesale.denet.app/",
+        "https://x.com/DeNetPro/status/2087209173368893693",
+        "https://x.com/DeNetPro/status/2080011501859995966",
+        "https://x.com/DeNetPro/status/2063704976111624198",
+        "https://docs.denet.pro/node.html"
+      ],
+      "review_note": "0円・スマホ型の上振れ候補としては有望だが、報酬価値と日本向け受領条件が未確定。現時点ではRadar本体へ昇格せずDiscovery内WATCHを維持する。Datakeeper購入は別案件であり対象外。"
     }
   ]
 }
