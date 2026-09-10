@@ -43,8 +43,9 @@ const rankings = [
 ];
 
 const allCurrentDetailUrls = current.map(item => detailUrl(item.id));
+const forceFullSubmission = !previous || files.includes('scripts/build.mjs') || files.includes('scripts/indexnow.mjs');
 
-if (!previous || files.includes('scripts/build.mjs')) {
+if (forceFullSubmission) {
   urls.add(`${BASE_URL}/`);
   rankings.forEach(url => urls.add(url));
   allCurrentDetailUrls.forEach(url => urls.add(url));
