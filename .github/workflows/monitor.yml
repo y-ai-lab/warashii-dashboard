@@ -1,0 +1,78 @@
+name: Monitor Radar Sources
+
+on:
+  schedule:
+    # 23:10 JST / 14:10 UTC — one polite check per day.
+    - cron: '10 14 * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/monitor_sources.py'
+      - 'data/opportunities.json'
+      - '.github/workflows/monitor.yml'
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: radar-source-monitor
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Monitor official and primary sources
+        run: python scripts/monitor_sources.py
+
+      - name: Read monitor summary
+        id: summary
+        shell: bash
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          from pathlib import Path
+          s = json.loads(Path('data/monitoring/summary.json').read_text())
+          print(f"alert={'true' if s['alert'] else 'false'}")
+          print(f"changes={s['change_count']}")
+          print(f"errors={s['error_count']}")
+          print(f"initialized={s['initialized']}")
+          PY
+
+      - name: Persist source fingerprints and report
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/source_state.json data/monitoring/latest_report.md data/monitoring/summary.json
+          if git diff --cached --quiet; then
+            echo "No monitor-state changes to commit."
+          else
+            git commit -m "Update source monitor state"
+            git push
+          fi
+
+      - name: Open review issue when a source changed
+        if: steps.summary.outputs.alert == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CHANGES: ${{ steps.summary.outputs.changes }}
+        shell: bash
+        run: |
+          gh issue create \
+            --title "Radar source change detected ($CHANGES)" \
+            --body-file data/monitoring/latest_report.md
+
+      - name: Write workflow summary
+        shell: bash
+        run: |
+          cat data/monitoring/latest_report.md >> "$GITHUB_STEP_SUMMARY"
