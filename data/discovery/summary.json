@@ -1,45 +1,51 @@
 {
-  "generated_at": "2026-09-10T12:23:52Z",
-  "new_count": 3,
-  "queue_count": 3,
+  "generated_at": "2026-09-10T12:32:15Z",
+  "new_count": 0,
+  "queue_count": 1,
   "source_count": 5,
   "error_count": 0,
-  "alert": true,
+  "noise_pruned": 4,
+  "alert": false,
   "source_stats": [
     {
       "id": "galxe-explore",
       "name": "Galxe Quest Explore",
       "kind": "html_links",
       "status": "robots-not-found",
-      "found": 2
+      "found": 0,
+      "noise_filtered": 2
     },
     {
       "id": "zealy-earn",
       "name": "Zealy Earn",
       "kind": "html_links",
       "status": "allowed",
-      "found": 0
+      "found": 0,
+      "noise_filtered": 0
     },
     {
       "id": "zealy-explore",
       "name": "Zealy Explore",
       "kind": "html_links",
       "status": "allowed",
-      "found": 0
+      "found": 0,
+      "noise_filtered": 0
     },
     {
       "id": "github-testnet",
       "name": "GitHub: testnet/airdrop signal",
       "kind": "github_search",
       "status": "ok",
-      "found": 0
+      "found": 0,
+      "noise_filtered": 0
     },
     {
       "id": "github-depin",
       "name": "GitHub: DePIN signal",
       "kind": "github_search",
       "status": "ok",
-      "found": 1
+      "found": 1,
+      "noise_filtered": 0
     }
   ]
 }

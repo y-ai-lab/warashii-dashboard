@@ -1,39 +1,7 @@
 {
-  "schema_version": "1.0",
-  "generated_at": "2026-09-10T12:23:52Z",
+  "schema_version": "1.1",
+  "generated_at": "2026-09-10T12:32:15Z",
   "candidates": [
-    {
-      "id": "signal-bee44a611c96",
-      "title": "Quests",
-      "candidate_url": "https://app.galxe.com/quest/explore/all",
-      "source_id": "galxe-explore",
-      "source_name": "Galxe Quest Explore",
-      "signal_type": "platform_link",
-      "trust": "platform_signal",
-      "signal_strength": 2,
-      "reason": "Found on Galxe Quest Explore",
-      "status": "REVIEW_REQUIRED",
-      "score_status": "NOT_SCORED",
-      "official_verification_required": true,
-      "discovered_at": "2026-09-10",
-      "last_seen_at": "2026-09-10"
-    },
-    {
-      "id": "signal-874e2269ca8a",
-      "title": "Spaces",
-      "candidate_url": "https://app.galxe.com/quest/spaces",
-      "source_id": "galxe-explore",
-      "source_name": "Galxe Quest Explore",
-      "signal_type": "platform_link",
-      "trust": "platform_signal",
-      "signal_strength": 2,
-      "reason": "Found on Galxe Quest Explore",
-      "status": "REVIEW_REQUIRED",
-      "score_status": "NOT_SCORED",
-      "official_verification_required": true,
-      "discovered_at": "2026-09-10",
-      "last_seen_at": "2026-09-10"
-    },
     {
       "id": "signal-a7fc1a223c90",
       "title": "DeNetPRO/Node — DeNet Storage is a decentralized cloud storage powered by users and Datakeepers who rent out their disk space. Datakeepers can earn rewards by providing storage capacity and sending proofs of stored data. This repository pro",
