@@ -5,15 +5,29 @@ on:
     paths:
       - 'data/**'
       - 'scripts/validate.py'
+      - 'scripts/build.mjs'
       - 'app.js'
+      - 'rankings.js'
+      - 'rankings/**'
       - 'index.html'
+      - 'styles.css'
+      - 'robots.txt'
+      - 'sitemap.xml'
+      - 'package.json'
       - '.github/workflows/validate.yml'
   pull_request:
     paths:
       - 'data/**'
       - 'scripts/validate.py'
+      - 'scripts/build.mjs'
       - 'app.js'
+      - 'rankings.js'
+      - 'rankings/**'
       - 'index.html'
+      - 'styles.css'
+      - 'robots.txt'
+      - 'sitemap.xml'
+      - 'package.json'
   schedule:
     - cron: '17 0 * * 1'
   workflow_dispatch:
@@ -38,4 +52,6 @@ jobs:
       - name: Validate opportunity database
         run: python scripts/validate.py
       - name: Check JavaScript syntax
-        run: node --check app.js
+        run: node --check app.js && node --check rankings.js && node --check scripts/build.mjs
+      - name: Build site
+        run: npm run build
