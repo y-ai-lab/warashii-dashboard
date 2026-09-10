@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "max_new_per_run": 8,
   "sources": [
     {
@@ -11,7 +11,7 @@
       "allowed_hosts": ["app.galxe.com"],
       "path_patterns": ["/quest/"],
       "keywords": ["airdrop", "testnet", "point", "reward", "gas free", "token"],
-      "note": "Discovery signal only. Verify the project's own official site/docs before scoring or execution."
+      "note": "Discovery signal only. Generic navigation/self-links are filtered. Verify the project's own official site/docs before scoring or execution."
     },
     {
       "id": "zealy-earn",
@@ -38,18 +38,34 @@
   ],
   "github_queries": [
     {
-      "id": "github-testnet",
-      "name": "GitHub: testnet/airdrop signal",
-      "query": "testnet points airdrop",
-      "days": 30,
+      "id": "github-incentivized-testnet",
+      "name": "GitHub: incentivized testnet signal",
+      "query": "incentivized testnet",
+      "days": 60,
       "min_stars": 5,
       "trust": "community_signal"
     },
     {
-      "id": "github-depin",
-      "name": "GitHub: DePIN signal",
+      "id": "github-testnet-airdrop",
+      "name": "GitHub: testnet airdrop signal",
+      "query": "testnet airdrop",
+      "days": 60,
+      "min_stars": 5,
+      "trust": "community_signal"
+    },
+    {
+      "id": "github-depin-rewards",
+      "name": "GitHub: DePIN rewards signal",
       "query": "depin rewards",
-      "days": 30,
+      "days": 60,
+      "min_stars": 5,
+      "trust": "community_signal"
+    },
+    {
+      "id": "github-depin-points",
+      "name": "GitHub: DePIN points signal",
+      "query": "depin points",
+      "days": 60,
       "min_stars": 5,
       "trust": "community_signal"
     }
