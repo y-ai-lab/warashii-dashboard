@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-10T12:32:15Z",
-  "new_count": 0,
-  "queue_count": 1,
-  "source_count": 5,
+  "generated_at": "2026-09-10T12:41:55Z",
+  "new_count": 2,
+  "queue_count": 3,
+  "source_count": 7,
   "error_count": 0,
-  "noise_pruned": 4,
-  "alert": false,
+  "noise_pruned": 2,
+  "alert": true,
   "source_stats": [
     {
       "id": "galxe-explore",
@@ -32,19 +32,35 @@
       "noise_filtered": 0
     },
     {
-      "id": "github-testnet",
-      "name": "GitHub: testnet/airdrop signal",
+      "id": "github-incentivized-testnet",
+      "name": "GitHub: incentivized testnet signal",
       "kind": "github_search",
       "status": "ok",
       "found": 0,
       "noise_filtered": 0
     },
     {
-      "id": "github-depin",
-      "name": "GitHub: DePIN signal",
+      "id": "github-testnet-airdrop",
+      "name": "GitHub: testnet airdrop signal",
+      "kind": "github_search",
+      "status": "ok",
+      "found": 2,
+      "noise_filtered": 0
+    },
+    {
+      "id": "github-depin-rewards",
+      "name": "GitHub: DePIN rewards signal",
       "kind": "github_search",
       "status": "ok",
       "found": 1,
+      "noise_filtered": 0
+    },
+    {
+      "id": "github-depin-points",
+      "name": "GitHub: DePIN points signal",
+      "kind": "github_search",
+      "status": "ok",
+      "found": 0,
       "noise_filtered": 0
     }
   ]
