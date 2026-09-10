@@ -12,20 +12,22 @@
       "trust": "community_signal",
       "signal_strength": 2,
       "reason": "Recently updated public DeNet repository triggered discovery; the free Watcher route was then checked against current first-party DeNet sources.",
-      "status": "REVIEWED_WATCH",
+      "status": "PROMOTED_WATCH",
       "score_status": "SCORED",
       "official_verification_required": false,
       "discovered_at": "2026-09-10",
       "last_seen_at": "2026-09-10",
       "reviewed_at": "2026-09-10",
+      "promoted_at": "2026-09-10",
       "decision": "WATCH",
-      "promotion_ready": false,
+      "promotion_ready": true,
+      "radar_id": "denet-watcher-20260910",
       "required_funds_yen": 0,
       "potential_value_yen": null,
-      "reward_label": "$WN / DeNet token airdrop eligibility等（具体価値・配布額は未確定）",
+      "reward_label": "$WN + DeNet token / Datakeeper node airdrop eligibility（価値・配布時期は未確定）",
       "mobile": "yes",
-      "risk_label": "2〜3 / 5（報酬不確実・アプリ/ウォレット・条件未確定）",
-      "conversion_route": "スマホWatcher稼働/活動実績 → $WN・資格実績 → 将来DeNet token airdrop等（不確定）",
+      "risk_label": "2〜3 / 5（報酬不確実・ウォレット・出金時KYC可能性）",
+      "conversion_route": "スマホWatcher稼働 → $WN/活動実績 → 将来DeNet token・Datakeeper airdrop資格（不確定）",
       "score": 77,
       "score_components": {
         "initial_cost": 20,
@@ -38,26 +40,26 @@
         "mobile": 5
       },
       "verified_facts": [
-        "DeNetの現行Node SaleページではWatcher Nodeをfree mobile nodeとしてDatakeeperと区別している",
-        "DeNet公式Xは2026-08-11時点でもWatcher Nodeをスマートフォンのearning nodeとして案内している",
-        "DeNet公式Xは2026-07-22にWatcher NodeのDaily Streaks稼働を案内している",
-        "DeNet公式Xは2026-06-07にDeNet token airdrop資格条件としてWatcher Node Stage 10とBasic Web 3.0 Courseを案内した",
-        "Datakeeper Nodeは公式Docs上、Node Saleで購入が必要であり、この0円候補には含めない"
+        "日本のApp StoreでDeNetアプリが配信され、Watcher Nodeを同アプリから利用できる",
+        "DeNet公式DocsはiOS/Android対応、アプリ内1タップでWatcher Node起動と案内している",
+        "DeNet公式Docsはfile partの確認ごとに$WNを獲得し、$WN実績が将来のDeNet tokenおよびDatakeeper node airdrop eligibilityを決めると案内している",
+        "2026-08-31の日本App Store版でもWatcher Auto Scanが案内されている",
+        "DeNet Privacy Policyはnode rewards計算にWatcherの稼働指標とwallet identifierを利用すると説明している",
+        "KYC/AMLは法令・コンプライアンス上必要な一部ケース、例としてwithdrawal processing等で要求される可能性がある",
+        "Datakeeper Nodeは購入が必要であり、この0円候補には含めない"
       ],
       "unresolved": [
-        "日本居住者向けの現在の報酬対象条件",
-        "Watcher報酬の具体的な換金価値・配布額・時期",
-        "報酬受領時のKYC有無とウォレット条件",
-        "現行アプリ内でStage/Watcherを開始する正確な手順"
+        "$WNの具体的な換金価値・流動性・配布時期",
+        "将来Airdropの最終配布額・時期",
+        "実際の出金時にKYCが要求される条件の詳細"
       ],
       "official_sources": [
-        "https://nodesale.denet.app/",
-        "https://x.com/DeNetPro/status/2087209173368893693",
-        "https://x.com/DeNetPro/status/2080011501859995966",
-        "https://x.com/DeNetPro/status/2063704976111624198",
+        "https://docs.denet.pro/watcher.html",
+        "https://denet.pro/privacy",
+        "https://apps.apple.com/jp/app/denet-private-cloud-storage/id1643491316",
         "https://docs.denet.pro/node.html"
       ],
-      "review_note": "0円・スマホ型の上振れ候補としては有望だが、報酬価値と日本向け受領条件が未確定。現時点ではRadar本体へ昇格せずDiscovery内WATCHを維持する。Datakeeper購入は別案件であり対象外。"
+      "review_note": "日本で利用可能な0円・スマホ型Watcherとして公式確認が十分取れたためRadar本体へWATCH昇格。具体的な換金価値とAirdrop条件は未確定なのでGOにはしない。"
     }
   ]
 }
