@@ -1,6 +1,6 @@
 {
   "schema_version": "1.3",
-  "generated_at": "2026-09-10T16:40:54Z",
+  "generated_at": "2026-09-11T00:00:00Z",
   "candidates": [
     {
       "id": "signal-a7fc1a223c90",
@@ -60,6 +60,62 @@
         "https://docs.denet.pro/node.html"
       ],
       "review_note": "日本で利用可能な0円・スマホ型Watcherとして公式確認が十分取れたためRadar本体へWATCH昇格。具体的な換金価値とAirdrop条件は未確定なのでGOにはしない。"
+    },
+    {
+      "id": "signal-coin-xyo-20260911",
+      "title": "XYO COIN App（Basic無料）",
+      "candidate_url": "https://docs.xyo.network/about-xyo/xyo-101/the-xyo-ecosystem/off-chain-data-producers",
+      "source_id": "official-research-20260911",
+      "source_name": "XYO公式Docs / COIN公式Support / 日本App Store",
+      "signal_type": "official_research",
+      "trust": "first_party_verified",
+      "signal_strength": 4,
+      "reason": "Current XYO docs describe COIN as a free mobile data-contribution app; current Japanese app-store listings confirm availability, and COIN support documents redemption requirements.",
+      "status": "REVIEWED_WATCH",
+      "score_status": "SCORED",
+      "official_verification_required": false,
+      "discovered_at": "2026-09-11",
+      "last_seen_at": "2026-09-11",
+      "reviewed_at": "2026-09-11",
+      "decision": "WATCH",
+      "promotion_ready": false,
+      "required_funds_yen": 0,
+      "potential_value_yen": null,
+      "reward_label": "COIN → 条件達成後にXYO等へ交換可能（交換価値は変動）",
+      "mobile": "yes",
+      "risk_label": "2 / 5（詳細位置情報・個人情報・ウォレット・報酬効率不確実）",
+      "conversion_route": "スマホ位置/行動データ提供 → COIN蓄積 → 10,000 COIN以上等の条件 → XYO等のデジタル資産",
+      "score": 78,
+      "score_components": {
+        "initial_cost": 20,
+        "expected_value": 10,
+        "risk": 9,
+        "time_efficiency": 13,
+        "reproducibility": 10,
+        "compoundability": 7,
+        "automation": 4,
+        "mobile": 5
+      },
+      "verified_facts": [
+        "XYO公式DocsはCOINを誰でもスマホで参加できるfree mobile appとして説明している",
+        "2026-08-22更新のGoogle Play表示ではCOIN BASICがFREE/monthと明記されている",
+        "日本のApp StoreでCOIN: Always Be Earningが現行配信されている",
+        "COIN公式SupportではXYO交換にアカウント2週間以上・10,000 COIN以上・XYO受取可能な外部ウォレットまたはCoinbase等を要求している",
+        "COIN公式Supportは位置偽装・報酬システム悪用・エミュレータ等を停止理由として挙げている"
+      ],
+      "unresolved": [
+        "日本でBasic無料利用した場合の現実的なCOIN獲得速度",
+        "XYO交換時の実質価値・ネットワーク費用・最低交換条件の将来変更",
+        "位置情報提供に対するプライバシー許容度"
+      ],
+      "official_sources": [
+        "https://docs.xyo.network/about-xyo/xyo-101/the-xyo-ecosystem/off-chain-data-producers",
+        "https://support.coinapp.co/hc/en-us/articles/360033362513-When-can-I-Redeem-my-COIN",
+        "https://support.coinapp.co/hc/en-us/articles/360047627593-Suspended-Account-Help",
+        "https://apps.apple.com/jp/app/coin-always-be-earning/id1450443351",
+        "https://play.google.com/store/apps/details?hl=ja&id=network.xyo.coin&listing=nocrypto"
+      ],
+      "review_note": "0円・スマホ完結・交換先が存在する点は強い。一方、位置情報を継続提供するプライバシーコストと、日本でのBasic実効獲得速度が未検証なのでRadar本体へはまだ昇格せずWATCHを維持。位置偽装・複垢・エミュレータ等は禁止。"
     }
   ]
 }
