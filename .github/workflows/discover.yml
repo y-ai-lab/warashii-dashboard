@@ -1,0 +1,79 @@
+name: Discover Opportunity Signals
+
+on:
+  schedule:
+    # 21:40 JST / 12:40 UTC — low-frequency discovery scan.
+    - cron: '40 12 * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/discover_candidates.py'
+      - 'data/discovery_sources.json'
+      - '.github/workflows/discover.yml'
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: radar-opportunity-discovery
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Discover review-only signals
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/discover_candidates.py
+
+      - name: Read discovery summary
+        id: summary
+        shell: bash
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          from pathlib import Path
+          s = json.loads(Path('data/discovery/summary.json').read_text())
+          print(f"alert={'true' if s['alert'] else 'false'}")
+          print(f"new={s['new_count']}")
+          print(f"queue={s['queue_count']}")
+          print(f"errors={s['error_count']}")
+          PY
+
+      - name: Persist discovery queue and report
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/discovery_queue.json data/discovery/summary.json data/discovery/latest_report.md
+          if git diff --cached --quiet; then
+            echo "No discovery changes to commit."
+          else
+            git commit -m "Update opportunity discovery queue"
+            git push
+          fi
+
+      - name: Open review issue for new candidates
+        if: steps.summary.outputs.alert == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NEW_COUNT: ${{ steps.summary.outputs.new }}
+        shell: bash
+        run: |
+          gh issue create \
+            --title "Discovery: $NEW_COUNT new review candidates" \
+            --body-file data/discovery/latest_report.md
+
+      - name: Write workflow summary
+        shell: bash
+        run: cat data/discovery/latest_report.md >> "$GITHUB_STEP_SUMMARY"
