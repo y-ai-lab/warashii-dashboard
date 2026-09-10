@@ -11,6 +11,7 @@ on:
       - 'scripts/exports.mjs'
       - 'scripts/discovery-page.mjs'
       - 'scripts/trust-pages.mjs'
+      - 'scripts/pilots.mjs'
       - 'scripts/indexnow.mjs'
       - 'app.js'
       - 'rankings.js'
@@ -32,6 +33,7 @@ on:
       - 'scripts/exports.mjs'
       - 'scripts/discovery-page.mjs'
       - 'scripts/trust-pages.mjs'
+      - 'scripts/pilots.mjs'
       - 'scripts/indexnow.mjs'
       - 'app.js'
       - 'rankings.js'
@@ -41,6 +43,7 @@ on:
       - 'robots.txt'
       - 'sitemap.xml'
       - 'package.json'
+      - '.github/workflows/validate.yml'
       - '.github/workflows/discover.yml'
   schedule:
     - cron: '17 0 * * 1'
