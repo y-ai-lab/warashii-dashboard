@@ -12,14 +12,18 @@
 
 調査結果そのものを `情報資産 → Web資産 → 集客資産 → 紹介/収益資産` に変換することを狙います。
 
-## MVP構成
+## 現在のMVP
 
 - `index.html` — UI
 - `styles.css` — レスポンシブデザイン
 - `app.js` — Score計算、検索、フィルター、鮮度判定
 - `data/opportunities.json` — 案件DB
+- `scripts/validate-data.mjs` — DB検証
+- `.github/workflows/validate.yml` — 無料CI
 
 外部JS/CSSライブラリ、ビルド処理、サーバーは不要です。
+
+2026-09-10時点で、ポイント/金融、少額投資、DePIN、Airdrop/Testnet、無料デジタル資産を横断して14件を収録しています。
 
 ## 100点評価
 
@@ -48,8 +52,19 @@
 1. 公式サイト
 2. 公式SNS
 3. 公式ドキュメント
-4. 信頼できる最新メディア
-5. コミュニティ情報
+4. ポイントサイト等、報酬条件を直接提示する公式案件ページ
+5. 信頼できる最新メディア
+6. コミュニティ情報
+
+コミュニティ情報だけでGO判定はしません。
+
+## Recommendation
+
+- `GO` — 現時点で実行/構築価値が高い
+- `WATCH` — 条件・リスク・報酬不確実性を確認してから実行
+- `STOP` — 現時点では見送る
+
+ポイント案件は表示額が変動するため、Radarの金額は確認日時点のスナップショットです。実行直前の案件ページ表示を最終値とします。
 
 ## 新しい案件の追加
 
@@ -95,32 +110,51 @@
 
 `mobile` は `yes` / `partial` / `no`。
 
-## 0円で公開する
+## 0円で公開する — Cloudflare Pagesを第一候補にする
 
-### GitHub Pages
+Asset Radarは将来的に紹介リンク、検索流入、収益導線を持つ可能性があります。そのため、公開サイトは **Cloudflare Pages Free** を第一候補にします。
 
-1. GitHubでこのリポジトリを開く
-2. `Settings` → `Pages`
-3. `Build and deployment` の Source を `Deploy from a branch`
-4. Branch を `main`、Folderを `/(root)` にして Save
-5. 発行された `github.io` URLを確認
+MVPは静的ファイルだけなので、Cloudflare PagesでGitHubリポジトリを接続し、ビルドコマンドなしで公開できます。
 
-このMVPは静的ファイルだけなので、Pages側のビルド設定は不要です。
+### Cloudflare Pages 接続
 
-### Cloudflare Pages（後から推奨）
+1. Cloudflare Dashboardで `Workers & Pages` を開く
+2. `Create` / `Pages` からGit連携を選ぶ
+3. GitHubの `y-ai-lab/warashii-dashboard` を接続
+4. Production branchを `main`
+5. Framework presetは静的サイト相当 / None
+6. Build commandは空欄
+7. Build output directoryは `/` またはCloudflare画面の静的ルート指定に合わせる
+8. Deploy
+9. 発行された `pages.dev` URLで表示確認
 
-GitHubリポジトリをCloudflare Pagesへ接続し、ビルドコマンドなし・出力ディレクトリをルートにして公開できます。独自ドメインが必要になるまでは無料サブドメインで運用します。
+Free planの範囲を超える機能は追加しません。
+
+### GitHub Pagesについて
+
+GitHub Pagesは技術確認・非商用プロトタイプには利用できますが、GitHub公式ドキュメント上、オンラインビジネス等の無料Webホスティング用途を主目的とする利用は想定されていません。
+
+そのため、このRadarではGitHubを**コード保管・履歴・CI・自動化資産**として使い、一般公開サイトはCloudflare Pagesを標準とします。
 
 ## 次の開発順
 
-1. MVP公開
-2. 案件を10〜20件へ拡充
-3. `期限間近 / 高Score / 0円` のランキング
-4. 自動鮮度チェック
+1. Cloudflare PagesでMVP公開
+2. 14件のRadarを運用開始
+3. `期限間近 / 高Score / 0円` のランキング改善
+4. GitHub Actionsで鮮度チェック
 5. 公式ページ変更検知
-6. SNS投稿用の差分生成
-7. 紹介可能案件のみ、規約を確認して紹介導線を追加
-8. 検索流入データを蓄積し、更新優先順位へフィードバック
+6. DB履歴をCloudflare D1へ蓄積
+7. SNS投稿用の差分生成
+8. 紹介可能案件だけ規約を確認して紹介導線を追加
+9. 検索流入データを蓄積し、更新優先順位へフィードバック
+
+## 資金投入案件の扱い
+
+0円案件と資金投入案件を混同しません。
+
+`required_funds_yen > 0` の案件は、報酬が高くても自動的にGOにはしません。元本毀損、資金拘束、手数料、換金性を別途評価します。
+
+特に借金、リボ払い、高レバレッジ投資を元本にする案件は禁止です。
 
 ## 禁止
 
