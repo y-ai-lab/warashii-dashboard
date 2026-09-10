@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-10T12:41:55Z",
-  "new_count": 2,
-  "queue_count": 3,
-  "source_count": 7,
+  "generated_at": "2026-09-10T13:58:08Z",
+  "new_count": 0,
+  "queue_count": 1,
+  "source_count": 6,
   "error_count": 0,
   "noise_pruned": 2,
-  "alert": true,
+  "alert": false,
   "source_stats": [
     {
       "id": "galxe-explore",
@@ -37,14 +37,6 @@
       "kind": "github_search",
       "status": "ok",
       "found": 0,
-      "noise_filtered": 0
-    },
-    {
-      "id": "github-testnet-airdrop",
-      "name": "GitHub: testnet airdrop signal",
-      "kind": "github_search",
-      "status": "ok",
-      "found": 2,
       "noise_filtered": 0
     },
     {
