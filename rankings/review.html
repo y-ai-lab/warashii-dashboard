@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="期限変動・WATCH・要再確認の案件を優先表示する、わらしべ Asset Radarの確認用ページ。" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://y-ai-lab.github.io/warashii-dashboard/rankings/review.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:site_name" content="わらしべ Asset Radar" />
+  <meta property="og:title" content="期限・要再確認リスト｜わらしべ Asset Radar" />
+  <meta property="og:description" content="期限変動、WATCH判定、最終確認から時間が経った案件を優先表示。" />
+  <meta property="og:url" content="https://y-ai-lab.github.io/warashii-dashboard/rankings/review.html" />
+  <meta name="twitter:card" content="summary" />
+  <title>期限・要再確認リスト｜わらしべ Asset Radar</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"CollectionPage",
+    "name":"期限・要再確認リスト",
+    "url":"https://y-ai-lab.github.io/warashii-dashboard/rankings/review.html",
+    "isPartOf":{"@type":"WebSite","name":"わらしべ Asset Radar","url":"https://y-ai-lab.github.io/warashii-dashboard/"},
+    "inLanguage":"ja"
+  }
+  </script>
+</head>
+<body data-ranking="review">
+  <header class="site-header">
+    <div class="shell header-inner">
+      <div>
+        <p class="eyebrow">わらしべ Asset Radar</p>
+        <h1>期限・要再確認リスト</h1>
+        <p class="subtitle">条件変更を見落とさないための確認優先ページ。</p>
+      </div>
+      <div class="header-badge">REVIEW</div>
+    </div>
+  </header>
+  <main class="shell">
+    <nav class="asset-nav" aria-label="ランキングナビゲーション">
+      <a href="../">Radar本体</a>
+      <a href="zero-yen.html">0円案件</a>
+      <a href="top-score.html">高Score</a>
+      <a href="review.html" aria-current="page">期限・要再確認</a>
+    </nav>
+
+    <section class="ranking-hero">
+      <p class="eyebrow">REVIEW QUEUE</p>
+      <h2>期限・WATCH・鮮度を先に見る</h2>
+      <p>WATCH判定、期限が変動する案件、Active表記、最終確認から14日超の案件を優先して並べます。自動監視は条件を勝手に書き換えず、変更候補を人間確認へ回します。</p>
+      <div class="ranking-meta"><span>確認対象 <b id="rankingCount">-</b>件</span><span>DB確認日 <b id="rankingChecked">-</b></span></div>
+    </section>
+
+    <section id="rankingCards" class="cards" aria-live="polite"></section>
+
+    <section class="score-guide">
+      <h2>確認ルール</h2>
+      <p>期限や報酬が変わりやすい案件は、古い条件のまま実行しません。一次情報を再確認してからRadarを更新し、Pendingや将来配布の期待値を確定資産として扱わない方針です。</p>
+    </section>
+  </main>
+  <footer class="shell footer"><p>公開情報の整理・比較用。自動監視で取得できないページは手動確認対象です。</p></footer>
+  <script src="../rankings.js" defer></script>
+</body>
+</html>
