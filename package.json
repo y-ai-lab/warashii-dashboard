@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "lint": "node --check app.js && node --check scripts/build.mjs && node --check tests/opportunities.test.mjs",
+    "lint": "node --check app.js && node --check rankings.js && node --check scripts/build.mjs && node --check tests/opportunities.test.mjs",
     "test": "node --test",
-    "typecheck": "node --check app.js && node --check scripts/build.mjs",
+    "typecheck": "node --check app.js && node --check rankings.js && node --check scripts/build.mjs",
     "build": "node scripts/build.mjs"
   },
   "engines": {
