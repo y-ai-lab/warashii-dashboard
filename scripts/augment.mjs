@@ -22,8 +22,13 @@ const CATEGORY_SLUGS = {
   'ポイント・金融': 'finance-points',
   '少額投資・キャンペーン': 'small-investment',
   'DePIN・Web3': 'web3-depin',
+  'Airdrop・Testnet': 'airdrop-testnet',
   '無料デジタル資産': 'digital-assets',
   'デジタル資産': 'owned-digital-assets',
+};
+
+const LEGACY_CATEGORY_ALIASES = {
+  'Airdrop・Testnet': ['category-8836d3096a'],
 };
 
 function scoreOf(item) {
@@ -175,6 +180,11 @@ function renderCategoryIndex(categories, grouped, updatedAt) {
 </html>`;
 }
 
+function renderLegacyRedirect(category) {
+  const canonical = `${BASE_URL}/categories/${categorySlug(category)}.html`;
+  return `<!doctype html><html lang="ja"><head><meta charset="utf-8" /><meta name="robots" content="noindex,follow" /><link rel="canonical" href="${canonical}" /><meta http-equiv="refresh" content="0; url=${canonical}" /><title>移動しました｜わらしべ Asset Radar</title></head><body><p><a href="${canonical}">${escapeHtml(category)}の新しいページへ移動</a></p></body></html>`;
+}
+
 function renderFeed(items, updatedAt) {
   const sorted = [...items].sort((a, b) => String(b.verified_at ?? '').localeCompare(String(a.verified_at ?? '')) || scoreOf(b) - scoreOf(a));
   const entries = sorted.map(item => `    <item>
@@ -230,6 +240,9 @@ await mkdir(categoriesDir, { recursive: true });
 await writeFile(resolve(categoriesDir, 'index.html'), renderCategoryIndex(categories, grouped, updatedAt), 'utf8');
 for (const category of categories) {
   await writeFile(resolve(categoriesDir, `${categorySlug(category)}.html`), renderCategoryPage(category, grouped.get(category) ?? [], updatedAt), 'utf8');
+  for (const legacySlug of LEGACY_CATEGORY_ALIASES[category] ?? []) {
+    await writeFile(resolve(categoriesDir, `${legacySlug}.html`), renderLegacyRedirect(category), 'utf8');
+  }
 }
 await writeFile(resolve(output, 'feed.xml'), renderFeed(opportunities, updatedAt), 'utf8');
 
