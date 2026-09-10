@@ -349,6 +349,46 @@
       }
     },
     {
+      "id": "denet-watcher-20260910",
+      "title": "DeNet Watcher Node",
+      "provider": "DeNet",
+      "category": "DePIN・Web3",
+      "asset_type": "権利資産 / 暗号資産候補",
+      "recommendation": "WATCH",
+      "required_funds_yen": 0,
+      "potential_value_yen": null,
+      "reward_label": "$WN + DeNet token / Datakeeper node airdrop eligibility（価値・配布時期は未確定）",
+      "work_minutes": 10,
+      "work_time_label": "初回 約5〜10分 + バックグラウンド稼働",
+      "acquisition_days_label": "Watcher稼働後に$WN蓄積 / 将来Airdrop判定",
+      "risk_label": "2〜3 / 5（報酬不確実・ウォレット・出金時KYC可能性）",
+      "conditions": [
+        "日本のApp StoreでDeNetアプリを無料インストール可能",
+        "DeNet Storageアプリ内でWatcher Nodeを1タップで起動",
+        "ネットワーク上のfile part確認に応じて$WNを獲得",
+        "$WN実績は将来のDeNet tokenおよびDatakeeper node airdrop eligibilityに利用されると公式Docsが案内",
+        "出金など一部ケースではKYC/AML確認を求められる可能性がある",
+        "有料のDatakeeper Node購入はこの0円候補に含めない"
+      ],
+      "deadline_label": "随時（現行アプリでWatcher機能提供中）",
+      "mobile": "yes",
+      "conversion_route": "スマホWatcher稼働 → $WN/活動実績 → 将来DeNet token・Datakeeper airdrop資格（不確定）",
+      "verified_at": "2026-09-10",
+      "source_url": "https://docs.denet.pro/watcher.html",
+      "source_name": "DeNet公式Watcher Node Docs",
+      "notes": "日本App Storeで現行アプリ配信を確認。2026-08-31版でもWatcher Auto Scanが案内されている。0円・スマホ型の上振れ候補だが、$WNの具体的換金価値・Airdrop配布額/時期は未確定なのでGOではなくWATCH。",
+      "score_components": {
+        "initial_cost": 20,
+        "expected_value": 8,
+        "risk": 9,
+        "time_efficiency": 14,
+        "reproducibility": 9,
+        "compoundability": 8,
+        "automation": 4,
+        "mobile": 5
+      }
+    },
+    {
       "id": "cloudflare-pages-free-20260910",
       "title": "Cloudflare Pages Free で公開Web資産を保有",
       "provider": "Cloudflare",
