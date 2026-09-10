@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://y-ai-lab.github.io/warashii-dashboard/sitemap.xml
