@@ -40,7 +40,7 @@
         <h1>わらしべ Asset Radar</h1>
         <p class="subtitle">「今0円から取れる価値」を、鮮度・期待値・リスクで選別する。</p>
       </div>
-      <div class="header-badge">MVP v0.2</div>
+      <div class="header-badge">MVP v0.3</div>
     </div>
   </header>
 
@@ -57,6 +57,14 @@
       <article class="kpi"><span>GO</span><strong id="kpiGo">-</strong></article>
       <article class="kpi"><span>0円案件</span><strong id="kpiZero">-</strong></article>
       <article class="kpi"><span>要再確認</span><strong id="kpiStale">-</strong></article>
+    </section>
+
+    <section class="legend" aria-label="自動監視ステータス">
+      <span><b>自動監視</b> <span id="monitorChecked">読込中</span></span>
+      <span>登録ソース <b id="monitorSources">-</b></span>
+      <span>変更候補 <b id="monitorChanges">-</b></span>
+      <span>取得エラー <b id="monitorErrors">-</b></span>
+      <span class="muted">robots.txtで拒否されたページは自動取得しません</span>
     </section>
 
     <section class="controls" aria-label="案件フィルター">
