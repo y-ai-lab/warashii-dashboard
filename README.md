@@ -18,7 +18,7 @@
 - `styles.css` — レスポンシブデザイン
 - `app.js` — Score計算、検索、フィルター、鮮度判定
 - `data/opportunities.json` — 案件DB
-- `scripts/validate-data.mjs` — DB検証
+- `scripts/validate.py` — DB検証
 - `.github/workflows/validate.yml` — 無料CI
 
 外部JS/CSSライブラリ、ビルド処理、サーバーは不要です。
