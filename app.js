@@ -67,6 +67,30 @@ function renderKpis(items) {
   document.querySelector('#kpiStale').textContent = items.filter(isStale).length;
 }
 
+function formatMonitorTime(value) {
+  if (!value) return '未実行';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return `${date.toLocaleDateString('ja-JP')} ${date.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' })}`;
+}
+
+async function loadMonitorStatus() {
+  try {
+    const response = await fetch('data/monitoring/summary.json', { cache: 'no-store' });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const summary = await response.json();
+    document.querySelector('#monitorChecked').textContent = `最終 ${formatMonitorTime(summary.generated_at)}`;
+    document.querySelector('#monitorSources').textContent = summary.source_count ?? '-';
+    document.querySelector('#monitorChanges').textContent = summary.change_count ?? '-';
+    document.querySelector('#monitorErrors').textContent = summary.error_count ?? '-';
+  } catch (error) {
+    document.querySelector('#monitorChecked').textContent = '状態取得不可';
+    document.querySelector('#monitorSources').textContent = '-';
+    document.querySelector('#monitorChanges').textContent = '-';
+    document.querySelector('#monitorErrors').textContent = '-';
+  }
+}
+
 function renderCard(item) {
   const tpl = document.querySelector('#cardTemplate');
   const card = tpl.content.firstElementChild.cloneNode(true);
@@ -150,6 +174,7 @@ function render() {
 }
 
 async function init() {
+  loadMonitorStatus();
   try {
     const response = await fetch('data/opportunities.json', { cache: 'no-store' });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
