@@ -49,6 +49,10 @@ function mobileLabel(value) {
   return ({ yes: '◎', partial: '○ 一部PC推奨', no: '×' })[value] ?? value;
 }
 
+function detailHref(item) {
+  return `opportunities/${encodeURIComponent(item.id)}.html`;
+}
+
 function addCategories(items) {
   const select = document.querySelector('#categoryFilter');
   const categories = [...new Set(items.map(x => x.category))].sort((a,b)=>a.localeCompare(b,'ja'));
@@ -106,7 +110,12 @@ function renderCard(item) {
   freshness.textContent = stale ? '要再確認' : '確認済み';
   freshness.classList.toggle('stale', stale);
 
-  card.querySelector('.title').textContent = item.title;
+  const title = card.querySelector('.title');
+  const titleLink = document.createElement('a');
+  titleLink.href = detailHref(item);
+  titleLink.textContent = item.title;
+  title.replaceChildren(titleLink);
+
   card.querySelector('.provider').textContent = `${item.provider} ・ ${item.asset_type}`;
   card.querySelector('.score strong').textContent = score;
   card.querySelector('.reward').textContent = item.reward_label;
