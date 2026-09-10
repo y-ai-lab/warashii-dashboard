@@ -110,6 +110,22 @@
 
 `mobile` は `yes` / `partial` / `no`。
 
+## GitHub Pagesで公開する
+
+`main` への変更は `.github/workflows/deploy-pages.yml` により検証・ビルドされ、GitHub Pagesへ自動公開されます。
+
+公開URL: <https://y-ai-lab.github.io/warashii-dashboard/>
+
+ローカルでは次のコマンドでCIと同じチェックを実行できます。
+
+```sh
+npm ci
+npm run lint
+npm run test
+npm run typecheck
+npm run build
+```
+
 ## 0円で公開する — Cloudflare Pagesを第一候補にする
 
 Asset Radarは将来的に紹介リンク、検索流入、収益導線を持つ可能性があります。そのため、公開サイトは **Cloudflare Pages Free** を第一候補にします。
