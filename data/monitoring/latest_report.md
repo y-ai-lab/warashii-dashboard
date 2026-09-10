@@ -1,27 +1,15 @@
 # Asset Radar Source Monitor
 
-- Checked: `2026-09-10T17:41:21Z`
+- Checked: `2026-09-10T23:05:30Z`
 - Sources: **15**
 - Newly initialized: **0**
-- Changes requiring review: **7**
+- Fingerprints migrated: **15**
+- Changes requiring review: **0**
 - Fetch errors: **0**
 
 ## Changes requiring human review
 
-- **みずほ銀行 新規口座開設 × Powl** — `content_changed`
-  - https://web.powl.jp/reward/35100
-- **Funds 無料投資家登録 × モッピー** — `content_changed`
-  - https://pc.moppy.jp/ad/detail.php?s_id=149901&track_ref=free
-- **SBI新生銀行 新規口座開設 × モッピー** — `content_changed`
-  - https://pc.moppy.jp/ad/detail.php?site_id=142543
-- **三井住友銀行 Olive 新規口座開設 × モッピー** — `content_changed`
-  - https://pc.moppy.jp/ad/detail.php?site_id=155058
-- **松井証券 無料口座開設 × モッピー** — `content_changed`
-  - https://pc.moppy.jp/ad/detail.php?s_id=129569
-- **Alterna Bank 1万円投資 × モッピー** — `content_changed`
-  - https://pc.moppy.jp/ad/detail.php?site_id=161120
-- **わらしべ Asset Radar MVP** — `content_changed`
-  - https://github.com/y-ai-lab/warashii-dashboard
+None.
 
 ## Skipped by robots.txt
 
@@ -30,6 +18,10 @@
 - **Cloudflare Pages Free で公開Web資産を保有** — https://developers.cloudflare.com/pages/platform/limits/
 - **Cloudflare D1 Free で案件DBを資産化** — https://developers.cloudflare.com/d1/platform/pricing/
 
+## Self-managed sources
+
+- **わらしべ Asset Radar MVP** — internal repository changes do not trigger external-condition alerts
+
 ## Policy
 
-This monitor never changes opportunity conditions automatically. A detected change only creates a review candidate; the official source must be re-verified before editing the Radar database.
+The monitor fingerprints campaign-specific reward/qualification text where possible, instead of volatile reviews/rankings. It never changes opportunity conditions automatically. A detected material change only creates a review candidate; the primary source must be re-verified before editing the Radar database.

@@ -1,8 +1,9 @@
 {
-  "generated_at": "2026-09-10T17:41:21Z",
+  "generated_at": "2026-09-10T23:05:30Z",
   "source_count": 15,
   "initialized": 0,
-  "change_count": 7,
+  "migrated": 15,
+  "change_count": 0,
   "error_count": 0,
-  "alert": true
+  "alert": false
 }
