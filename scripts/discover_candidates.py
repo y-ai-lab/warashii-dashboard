@@ -20,8 +20,10 @@ QUEUE = ROOT / "data" / "discovery_queue.json"
 SUMMARY = ROOT / "data" / "discovery" / "summary.json"
 REPORT = ROOT / "data" / "discovery" / "latest_report.md"
 RADAR = ROOT / "data" / "opportunities.json"
-USER_AGENT = "WarashiiAssetRadarDiscovery/1.0 (+https://y-ai-lab.github.io/warashii-dashboard/)"
+USER_AGENT = "WarashiiAssetRadarDiscovery/1.1 (+https://y-ai-lab.github.io/warashii-dashboard/)"
 TRACKING_PARAMS = {"ref", "refer", "referral", "referral_code", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"}
+GENERIC_NAV_TEXT = {"all", "campaigns", "earn", "explore", "home", "quests", "spaces"}
+GENERIC_GALXE_PATHS = {"/quest", "/quest/explore", "/quest/explore/all", "/quest/spaces"}
 
 
 class LinkParser(HTMLParser):
@@ -92,12 +94,12 @@ def robots_allowed(url: str) -> tuple[bool, str]:
         if exc.code == 404:
             return True, "robots-not-found"
         return False, f"robots-http-{exc.code}"
-    except Exception as exc:  # conservative on unknown robots state
+    except Exception as exc:
         return False, f"robots-error:{type(exc).__name__}"
 
-    current_agents: list[str] = []
-    disallows: list[str] = []
     applies = False
+    disallows: list[str] = []
+    seen_matching_block = False
     for line in text.splitlines():
         line = line.split("#", 1)[0].strip()
         if not line or ":" not in line:
@@ -105,10 +107,10 @@ def robots_allowed(url: str) -> tuple[bool, str]:
         key, value = [x.strip() for x in line.split(":", 1)]
         key = key.lower()
         if key == "user-agent":
-            if current_agents and applies:
+            if seen_matching_block and not applies:
                 break
-            current_agents = [value.lower()]
             applies = value == "*" or "warashiiassetradardiscovery" in value.lower()
+            seen_matching_block = seen_matching_block or applies
         elif key == "disallow" and applies and value:
             disallows.append(value)
     path = parts.path or "/"
@@ -143,9 +145,37 @@ def make_signal(*, url: str, title: str, source_id: str, source_name: str, trust
     }
 
 
+def is_navigation_noise(source_id: str, source_url: str, candidate_url: str, title: str) -> bool:
+    clean = normalize_url(candidate_url)
+    if clean == normalize_url(source_url):
+        return True
+    path = urlsplit(clean).path.rstrip("/") or "/"
+    text = re.sub(r"\s+", " ", title).strip().lower()
+    if source_id == "galxe-explore" and path in GENERIC_GALXE_PATHS:
+        return True
+    if text in GENERIC_NAV_TEXT:
+        return True
+    return False
+
+
+def prune_existing_noise(items: list[dict], sources: list[dict]) -> tuple[list[dict], int]:
+    source_urls = {s["id"]: s.get("url", "") for s in sources}
+    kept: list[dict] = []
+    removed = 0
+    for item in items:
+        source_url = source_urls.get(item.get("source_id", ""), "")
+        if source_url and item.get("signal_type") == "platform_link" and is_navigation_noise(
+            item.get("source_id", ""), source_url, item.get("candidate_url", ""), item.get("title", "")
+        ):
+            removed += 1
+            continue
+        kept.append(item)
+    return kept, removed
+
+
 def discover_html(source: dict) -> tuple[list[dict], dict]:
     allowed, robots = robots_allowed(source["url"])
-    stat = {"id": source["id"], "name": source["name"], "kind": "html_links", "status": robots, "found": 0}
+    stat = {"id": source["id"], "name": source["name"], "kind": "html_links", "status": robots, "found": 0, "noise_filtered": 0}
     if not allowed:
         return [], stat
     html = fetch_text(source["url"])
@@ -162,13 +192,29 @@ def discover_html(source: dict) -> tuple[list[dict], dict]:
             continue
         if patterns and not any(p in parts.path for p in patterns):
             continue
+        if is_navigation_noise(source["id"], source["url"], url, text):
+            stat["noise_filtered"] += 1
+            continue
         haystack = f"{text} {parts.path}".lower()
         keyword_hits = [k for k in keywords if k in haystack]
+        # Generic platform links without any opportunity-related signal are too noisy.
+        if not keyword_hits and len(parts.path.strip("/").split("/")) < 3:
+            stat["noise_filtered"] += 1
+            continue
         strength = 3 if keyword_hits else 2
         reason = f"Found on {source['name']}"
         if keyword_hits:
             reason += "; keywords: " + ", ".join(keyword_hits[:4])
-        out.append(make_signal(url=url, title=text or parts.path.rsplit("/", 1)[-1], source_id=source["id"], source_name=source["name"], trust=source.get("trust", "platform_signal"), signal_type="platform_link", reason=reason, strength=strength))
+        out.append(make_signal(
+            url=url,
+            title=text or parts.path.rsplit("/", 1)[-1],
+            source_id=source["id"],
+            source_name=source["name"],
+            trust=source.get("trust", "platform_signal"),
+            signal_type="platform_link",
+            reason=reason,
+            strength=strength,
+        ))
     unique = {item["candidate_url"]: item for item in out}
     stat["found"] = len(unique)
     return list(unique.values()), stat
@@ -197,13 +243,14 @@ def discover_github(query: dict) -> tuple[list[dict], dict]:
             reason=f"Recently updated public repo matching discovery query; stars={stars}. Community signal only.",
             strength=1 if stars < 20 else 2,
         ))
-    return signals, {"id": query["id"], "name": query["name"], "kind": "github_search", "status": "ok", "found": len(signals)}
+    return signals, {"id": query["id"], "name": query["name"], "kind": "github_search", "status": "ok", "found": len(signals), "noise_filtered": 0}
 
 
 def main() -> None:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
-    queue = json.loads(QUEUE.read_text(encoding="utf-8")) if QUEUE.exists() else {"schema_version": "1.0", "candidates": []}
-    existing = {item["candidate_url"]: item for item in queue.get("candidates", [])}
+    raw_queue = json.loads(QUEUE.read_text(encoding="utf-8")) if QUEUE.exists() else {"schema_version": "1.0", "candidates": []}
+    cleaned, pruned_count = prune_existing_noise(raw_queue.get("candidates", []), config.get("sources", []))
+    existing = {item["candidate_url"]: item for item in cleaned}
     known = known_radar_urls()
     collected: list[dict] = []
     stats: list[dict] = []
@@ -215,7 +262,7 @@ def main() -> None:
             collected.extend(found)
             stats.append(stat)
         except (HTTPError, URLError, TimeoutError, ValueError, json.JSONDecodeError) as exc:
-            stats.append({"id": source["id"], "name": source["name"], "kind": source.get("kind"), "status": f"error:{type(exc).__name__}", "found": 0})
+            stats.append({"id": source["id"], "name": source["name"], "kind": source.get("kind"), "status": f"error:{type(exc).__name__}", "found": 0, "noise_filtered": 0})
             errors.append(f"{source['name']}: {type(exc).__name__}: {exc}")
         time.sleep(1)
 
@@ -225,7 +272,7 @@ def main() -> None:
             collected.extend(found)
             stats.append(stat)
         except Exception as exc:
-            stats.append({"id": query["id"], "name": query["name"], "kind": "github_search", "status": f"error:{type(exc).__name__}", "found": 0})
+            stats.append({"id": query["id"], "name": query["name"], "kind": "github_search", "status": f"error:{type(exc).__name__}", "found": 0, "noise_filtered": 0})
             errors.append(f"{query['name']}: {type(exc).__name__}: {exc}")
 
     max_new = int(config.get("max_new_per_run", 8))
@@ -241,9 +288,9 @@ def main() -> None:
         existing[item["candidate_url"]] = item
         new_items.append(item)
 
-    candidates = sorted(existing.values(), key=lambda x: (x.get("status") != "REVIEW_REQUIRED", x.get("discovered_at", ""), x.get("signal_strength", 0)), reverse=True)
+    candidates = sorted(existing.values(), key=lambda x: (x.get("discovered_at", ""), x.get("signal_strength", 0), x.get("candidate_url", "")), reverse=True)
     generated = now_iso()
-    queue_payload = {"schema_version": "1.0", "generated_at": generated, "candidates": candidates}
+    queue_payload = {"schema_version": "1.1", "generated_at": generated, "candidates": candidates}
     QUEUE.write_text(json.dumps(queue_payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     summary = {
@@ -252,6 +299,7 @@ def main() -> None:
         "queue_count": len(candidates),
         "source_count": len(stats),
         "error_count": len(errors),
+        "noise_pruned": pruned_count + sum(int(s.get("noise_filtered", 0)) for s in stats),
         "alert": bool(new_items),
         "source_stats": stats,
     }
@@ -265,6 +313,7 @@ def main() -> None:
         f"- Discovery sources: **{len(stats)}**",
         f"- New review candidates: **{len(new_items)}**",
         f"- Queue total: **{len(candidates)}**",
+        f"- Noise filtered/pruned: **{summary['noise_pruned']}**",
         f"- Source errors: **{len(errors)}**",
         "",
         "> **REVIEW_REQUIRED = 実行禁止。** 発見シグナルは推薦ではありません。公式サイト/公式Docsへ戻り、Hard Gateと100点評価を通過するまでRadar本体には入りません。",
@@ -284,7 +333,7 @@ def main() -> None:
         lines.append("None.")
     lines += ["", "## Source status", ""]
     for stat in stats:
-        lines.append(f"- **{stat['name']}** — {stat['status']} / found {stat['found']}")
+        lines.append(f"- **{stat['name']}** — {stat['status']} / found {stat['found']} / noise {stat.get('noise_filtered', 0)}")
     if errors:
         lines += ["", "## Errors", ""] + [f"- {e}" for e in errors]
     lines += [
