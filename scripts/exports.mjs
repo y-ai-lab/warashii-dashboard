@@ -2,7 +2,9 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
-const output = resolve(root, 'dist', 'exports');
+const dist = resolve(root, 'dist');
+const output = resolve(dist, 'exports');
+const BASE_URL = 'https://y-ai-lab.github.io/warashii-dashboard';
 const payload = JSON.parse(await readFile(resolve(root, 'data', 'opportunities.json'), 'utf8'));
 const items = payload.opportunities ?? [];
 
@@ -59,5 +61,19 @@ await writeFile(resolve(output, 'zero-yen.json'), JSON.stringify({ meta: { ...me
 const columns = Object.keys(records[0] ?? {});
 const csv = [columns.join(','), ...records.map(row => columns.map(key => csvEscape(row[key])).join(','))].join('\n') + '\n';
 await writeFile(resolve(output, 'opportunities.csv'), csv, 'utf8');
+
+const index = `<!doctype html>
+<html lang="ja"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="description" content="わらしべ Asset Radarの案件データをJSON/CSVで再利用できます。" /><meta name="robots" content="index,follow" /><link rel="canonical" href="${BASE_URL}/exports/" /><title>データ出力｜わらしべ Asset Radar</title><link rel="stylesheet" href="../styles.css" /></head>
+<body><header class="site-header"><div class="shell header-inner"><div><p class="eyebrow">REUSABLE DATA</p><h1>データ出力</h1><p class="subtitle">Radarの案件データを、次のBot・分析・サイトへ再利用する。</p></div><a class="header-badge" href="../">Radarへ戻る</a></div></header><main class="shell"><nav class="asset-nav"><a href="../">全案件</a><a href="../methodology/">評価方法</a><a href="../updates/">更新履歴</a></nav><section class="ranking-hero"><p class="eyebrow">EXPORTS</p><h2>${records.length}件を機械可読形式で公開</h2><p>元データと同じ更新日に自動生成されます。条件は変動するため、実行前は各レコードのsource_urlを確認してください。</p><div class="ranking-meta"><span>Schema <b>1.0</b></span><span>DB更新 <b>${payload.updated_at ?? '不明'}</b></span></div></section><section class="cards"><article class="card"><h2 class="title"><a href="opportunities.json">全案件 JSON</a></h2><p class="notes">全レコードをScore付きで取得。</p></article><article class="card"><h2 class="title"><a href="opportunities.csv">全案件 CSV</a></h2><p class="notes">表計算・分析向け。</p></article><article class="card"><h2 class="title"><a href="go.json">GO案件 JSON</a></h2><p class="notes">現時点の実行候補だけ。</p></article><article class="card"><h2 class="title"><a href="zero-yen.json">0円案件 JSON</a></h2><p class="notes">必要資金0円の候補だけ。</p></article></section></main><footer class="shell footer"><p>公開データは比較・再利用用。報酬保証や投資助言ではありません。</p></footer></body></html>`;
+await writeFile(resolve(output, 'index.html'), index, 'utf8');
+
+const sitemapPath = resolve(dist, 'sitemap.xml');
+let sitemap = await readFile(sitemapPath, 'utf8');
+const url = `${BASE_URL}/exports/`;
+if (!sitemap.includes(`<loc>${url}</loc>`)) {
+  const lastmod = payload.updated_at ?? new Date().toISOString().slice(0, 10);
+  sitemap = sitemap.replace('</urlset>', `  <url>\n    <loc>${url}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>0.6</priority>\n  </url>\n</urlset>`);
+  await writeFile(sitemapPath, sitemap, 'utf8');
+}
 
 console.log(`Generated reusable exports: ${records.length} records.`);
