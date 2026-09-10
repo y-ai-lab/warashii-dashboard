@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="0円から取得できる資産・権利・ポイント・デジタル資産を、期待値とリスクで比較するAsset Radar。" />
+  <title>わらしべ Asset Radar</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <div>
+        <p class="eyebrow">0円資産構築プロジェクト</p>
+        <h1>わらしべ Asset Radar</h1>
+        <p class="subtitle">「今0円から取れる価値」を、鮮度・期待値・リスクで選別する。</p>
+      </div>
+      <div class="header-badge">MVP v0.1</div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="principle" aria-label="判断原則">
+      <strong>判断原則</strong>
+      <span>① 今0円から取れる価値は何か</span>
+      <span>② それを次の何に変換できるか</span>
+      <span>③ 行動後に資産として残るか</span>
+    </section>
+
+    <section class="kpis" aria-label="サマリー">
+      <article class="kpi"><span>掲載</span><strong id="kpiTotal">-</strong></article>
+      <article class="kpi"><span>GO</span><strong id="kpiGo">-</strong></article>
+      <article class="kpi"><span>0円案件</span><strong id="kpiZero">-</strong></article>
+      <article class="kpi"><span>要再確認</span><strong id="kpiStale">-</strong></article>
+    </section>
+
+    <section class="controls" aria-label="案件フィルター">
+      <label class="search-wrap">
+        <span>検索</span>
+        <input id="searchInput" type="search" placeholder="銀行 / DePIN / Web資産…" autocomplete="off" />
+      </label>
+      <label>
+        <span>カテゴリ</span>
+        <select id="categoryFilter"><option value="all">すべて</option></select>
+      </label>
+      <label>
+        <span>判定</span>
+        <select id="recommendationFilter">
+          <option value="all">すべて</option>
+          <option value="GO">GO</option>
+          <option value="WATCH">WATCH</option>
+          <option value="STOP">STOP</option>
+        </select>
+      </label>
+      <label>
+        <span>並び順</span>
+        <select id="sortSelect">
+          <option value="score">Score順</option>
+          <option value="fresh">確認日が新しい順</option>
+          <option value="value">金額期待値順</option>
+          <option value="time">作業時間が短い順</option>
+        </select>
+      </label>
+    </section>
+
+    <section class="legend">
+      <span><b>GO</b> 実行候補</span>
+      <span><b>WATCH</b> 条件・価値を継続確認</span>
+      <span><b>STOP</b> 現時点では非推奨</span>
+      <span class="muted">最終確認から14日超は「要再確認」</span>
+    </section>
+
+    <section id="cards" class="cards" aria-live="polite"></section>
+    <p id="emptyState" class="empty" hidden>条件に合う案件はありません。</p>
+
+    <section class="score-guide">
+      <h2>100点評価</h2>
+      <div class="score-grid">
+        <span>初期費用 20</span><span>期待値 20</span><span>リスク 15</span><span>時間効率 15</span>
+        <span>再現性 10</span><span>複利性 10</span><span>自動化 5</span><span>スマホ完結 5</span>
+      </div>
+      <p>点数は比較補助。報酬保証ではありません。キャンペーンは実行直前に必ず公式条件を再確認します。</p>
+    </section>
+  </main>
+
+  <footer class="shell footer">
+    <p>公開情報の整理・比較用。投資助言ではありません。規約違反、複垢、虚偽申告、地域制限回避は対象外です。</p>
+  </footer>
+
+  <template id="cardTemplate">
+    <article class="card">
+      <div class="card-top">
+        <div>
+          <div class="badges">
+            <span class="badge rec"></span>
+            <span class="badge category"></span>
+            <span class="badge freshness"></span>
+          </div>
+          <h2 class="title"></h2>
+          <p class="provider"></p>
+        </div>
+        <div class="score"><strong></strong><span>/100</span></div>
+      </div>
+      <div class="reward"></div>
+      <dl class="facts">
+        <div><dt>必要資金</dt><dd class="funds"></dd></div>
+        <div><dt>作業時間</dt><dd class="work"></dd></div>
+        <div><dt>獲得まで</dt><dd class="days"></dd></div>
+        <div><dt>Risk</dt><dd class="risk"></dd></div>
+        <div><dt>スマホ</dt><dd class="mobile"></dd></div>
+        <div><dt>期限</dt><dd class="deadline"></dd></div>
+      </dl>
+      <p class="conversion"></p>
+      <details>
+        <summary>条件・評価内訳</summary>
+        <ul class="conditions"></ul>
+        <div class="score-breakdown"></div>
+        <p class="notes"></p>
+      </details>
+      <div class="card-footer">
+        <span class="verified"></span>
+        <a class="source" target="_blank" rel="noopener noreferrer">公式/一次情報</a>
+      </div>
+    </article>
+  </template>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
