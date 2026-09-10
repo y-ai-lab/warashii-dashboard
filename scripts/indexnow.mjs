@@ -66,11 +66,13 @@ const rankings = [
 ];
 const feed = `${BASE_URL}/feed.xml`;
 const trustPages = [`${BASE_URL}/methodology/`, `${BASE_URL}/updates/`];
+const discoveryPage = `${BASE_URL}/discovery/`;
 const allCurrentDetailUrls = current.map(item => detailUrl(item.id));
 const allCategoryUrls = categoryUrls(current);
 const forceFullSubmission = !previous || files.some(file => [
   'scripts/build.mjs',
   'scripts/augment.mjs',
+  'scripts/discovery-page.mjs',
   'scripts/trust-pages.mjs',
   'scripts/indexnow.mjs',
   'package.json',
@@ -82,6 +84,7 @@ if (forceFullSubmission) {
   allCategoryUrls.forEach(url => urls.add(url));
   allCurrentDetailUrls.forEach(url => urls.add(url));
   trustPages.forEach(url => urls.add(url));
+  urls.add(discoveryPage);
   urls.add(feed);
 } else {
   if (files.some(file => ['index.html', 'app.js'].includes(file))) {
@@ -98,6 +101,7 @@ if (forceFullSubmission) {
     allCategoryUrls.forEach(url => urls.add(url));
     allCurrentDetailUrls.forEach(url => urls.add(url));
     trustPages.forEach(url => urls.add(url));
+    urls.add(discoveryPage);
   }
 
   if (files.includes('data/opportunities.json')) {
@@ -117,6 +121,10 @@ if (forceFullSubmission) {
 
   if (files.some(file => file.startsWith('data/monitoring/'))) {
     urls.add(`${BASE_URL}/updates/`);
+  }
+
+  if (files.some(file => file === 'data/discovery_queue.json' || file.startsWith('data/discovery/'))) {
+    urls.add(discoveryPage);
   }
 }
 
