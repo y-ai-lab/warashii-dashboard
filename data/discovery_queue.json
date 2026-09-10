@@ -1,29 +1,13 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "generated_at": "2026-09-10T12:41:55Z",
   "candidates": [
-    {
-      "id": "signal-b34b6a2697c5",
-      "title": "solana-developers/solana-devnet-faucet — Public web faucet for Solana devnet/testnet airdrops",
-      "candidate_url": "https://github.com/solana-developers/solana-devnet-faucet",
-      "source_id": "github-testnet-airdrop",
-      "source_name": "GitHub: testnet airdrop signal",
-      "signal_type": "github_search",
-      "trust": "community_signal",
-      "signal_strength": 2,
-      "reason": "Recently updated public repo matching discovery query; stars=54. Community signal only.",
-      "status": "REVIEW_REQUIRED",
-      "score_status": "NOT_SCORED",
-      "official_verification_required": true,
-      "discovered_at": "2026-09-10",
-      "last_seen_at": "2026-09-10"
-    },
     {
       "id": "signal-a7fc1a223c90",
       "title": "DeNet Watcher Node",
       "candidate_url": "https://github.com/DeNetPRO/Node",
-      "source_id": "github-depin",
-      "source_name": "GitHub: DePIN signal",
+      "source_id": "github-depin-rewards",
+      "source_name": "GitHub: DePIN rewards signal",
       "signal_type": "github_search",
       "trust": "community_signal",
       "signal_strength": 2,
@@ -74,22 +58,6 @@
         "https://docs.denet.pro/node.html"
       ],
       "review_note": "0円・スマホ型の上振れ候補としては有望だが、報酬価値と日本向け受領条件が未確定。現時点ではRadar本体へ昇格せずDiscovery内WATCHを維持する。Datakeeper購入は別案件であり対象外。"
-    },
-    {
-      "id": "signal-c7caf6906d6e",
-      "title": "sneakythoug/mega-eth-testnet-bot-2026 — Automates MegaETH real-time EVM testnet interactions at 100,000+ TPS to build activity history for mainnet airdrop. Handles faucet, testnet DEX swaps and NFT mints across many wallets.",
-      "candidate_url": "https://github.com/sneakythoug/mega-eth-testnet-bot-2026",
-      "source_id": "github-testnet-airdrop",
-      "source_name": "GitHub: testnet airdrop signal",
-      "signal_type": "github_search",
-      "trust": "community_signal",
-      "signal_strength": 1,
-      "reason": "Recently updated public repo matching discovery query; stars=5. Community signal only.",
-      "status": "REVIEW_REQUIRED",
-      "score_status": "NOT_SCORED",
-      "official_verification_required": true,
-      "discovered_at": "2026-09-10",
-      "last_seen_at": "2026-09-10"
     }
   ]
 }
