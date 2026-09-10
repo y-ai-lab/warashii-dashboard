@@ -1,14 +1,27 @@
 # Asset Radar Source Monitor
 
-- Checked: `2026-09-10T03:57:33Z`
-- Sources: **14**
-- Newly initialized: **14**
-- Changes requiring review: **0**
+- Checked: `2026-09-10T14:08:23Z`
+- Sources: **15**
+- Newly initialized: **1**
+- Changes requiring review: **7**
 - Fetch errors: **0**
 
 ## Changes requiring human review
 
-None.
+- **みずほ銀行 新規口座開設 × Powl** — `content_changed`
+  - https://web.powl.jp/reward/35100
+- **Funds 無料投資家登録 × モッピー** — `content_changed`
+  - https://pc.moppy.jp/ad/detail.php?s_id=149901&track_ref=free
+- **SBI新生銀行 新規口座開設 × モッピー** — `content_changed`
+  - https://pc.moppy.jp/ad/detail.php?site_id=142543
+- **三井住友銀行 Olive 新規口座開設 × モッピー** — `content_changed`
+  - https://pc.moppy.jp/ad/detail.php?site_id=155058
+- **松井証券 無料口座開設 × モッピー** — `content_changed`
+  - https://pc.moppy.jp/ad/detail.php?s_id=129569
+- **Alterna Bank 1万円投資 × モッピー** — `content_changed`
+  - https://pc.moppy.jp/ad/detail.php?site_id=161120
+- **わらしべ Asset Radar MVP** — `content_changed`
+  - https://github.com/y-ai-lab/warashii-dashboard
 
 ## Skipped by robots.txt
 
