@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "max_new_per_run": 8,
+  "sources": [
+    {
+      "id": "galxe-explore",
+      "name": "Galxe Quest Explore",
+      "kind": "html_links",
+      "url": "https://app.galxe.com/quest/explore/all",
+      "trust": "platform_signal",
+      "allowed_hosts": ["app.galxe.com"],
+      "path_patterns": ["/quest/"],
+      "keywords": ["airdrop", "testnet", "point", "reward", "gas free", "token"],
+      "note": "Discovery signal only. Verify the project's own official site/docs before scoring or execution."
+    },
+    {
+      "id": "zealy-earn",
+      "name": "Zealy Earn",
+      "kind": "html_links",
+      "url": "https://zealy.io/earn",
+      "trust": "platform_signal",
+      "allowed_hosts": ["zealy.io", "www.zealy.io"],
+      "path_patterns": ["/cw/"],
+      "keywords": ["usdc", "crypto", "reward", "airdrop", "quest", "point"],
+      "note": "Discovery signal only. Verify the project's own official site/docs before scoring or execution."
+    },
+    {
+      "id": "zealy-explore",
+      "name": "Zealy Explore",
+      "kind": "html_links",
+      "url": "https://zealy.io/explore",
+      "trust": "platform_signal",
+      "allowed_hosts": ["zealy.io", "www.zealy.io"],
+      "path_patterns": ["/cw/"],
+      "keywords": ["testnet", "depin", "airdrop", "reward", "quest", "point"],
+      "note": "Discovery signal only. Verify the project's own official site/docs before scoring or execution."
+    }
+  ],
+  "github_queries": [
+    {
+      "id": "github-testnet",
+      "name": "GitHub: testnet/airdrop signal",
+      "query": "testnet points airdrop",
+      "days": 30,
+      "min_stars": 5,
+      "trust": "community_signal"
+    },
+    {
+      "id": "github-depin",
+      "name": "GitHub: DePIN signal",
+      "query": "depin rewards",
+      "days": 30,
+      "min_stars": 5,
+      "trust": "community_signal"
+    }
+  ]
+}
