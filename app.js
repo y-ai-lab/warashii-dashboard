@@ -121,11 +121,14 @@ function filteredItems() {
   const q = document.querySelector('#searchInput').value.trim().toLowerCase();
   const category = document.querySelector('#categoryFilter').value;
   const rec = document.querySelector('#recommendationFilter').value;
+  const funds = document.querySelector('#fundsFilter').value;
   const sort = document.querySelector('#sortSelect').value;
 
   const result = opportunities.filter(item => {
     const haystack = [item.title, item.provider, item.category, item.asset_type, item.reward_label, item.notes, ...(item.conditions ?? [])].join(' ').toLowerCase();
-    return (!q || haystack.includes(q)) && (category === 'all' || item.category === category) && (rec === 'all' || item.recommendation === rec);
+    const requiredFunds = Number(item.required_funds_yen ?? 0);
+    const fundsMatch = funds === 'all' || (funds === 'zero' ? requiredFunds === 0 : requiredFunds > 0);
+    return (!q || haystack.includes(q)) && (category === 'all' || item.category === category) && (rec === 'all' || item.recommendation === rec) && fundsMatch;
   });
 
   result.sort((a,b) => {
@@ -153,7 +156,7 @@ async function init() {
     const payload = await response.json();
     opportunities = payload.opportunities ?? [];
     addCategories(opportunities);
-    ['searchInput','categoryFilter','recommendationFilter','sortSelect'].forEach(id => {
+    ['searchInput','categoryFilter','recommendationFilter','fundsFilter','sortSelect'].forEach(id => {
       document.querySelector(`#${id}`).addEventListener(id === 'searchInput' ? 'input' : 'change', render);
     });
     render();
