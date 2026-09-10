@@ -1,10 +1,13 @@
 {
-  "generated_at": "2026-09-10T13:58:08Z",
+  "generated_at": "2026-09-10T13:59:48Z",
   "new_count": 0,
   "queue_count": 1,
   "source_count": 6,
   "error_count": 0,
   "noise_pruned": 2,
+  "navigation_filtered": 2,
+  "hard_gate_filtered": 0,
+  "utility_filtered": 0,
   "alert": false,
   "source_stats": [
     {
@@ -13,7 +16,9 @@
       "kind": "html_links",
       "status": "robots-not-found",
       "found": 0,
-      "noise_filtered": 2
+      "noise_filtered": 2,
+      "hard_gate_filtered": 0,
+      "utility_filtered": 0
     },
     {
       "id": "zealy-earn",
@@ -21,7 +26,9 @@
       "kind": "html_links",
       "status": "allowed",
       "found": 0,
-      "noise_filtered": 0
+      "noise_filtered": 0,
+      "hard_gate_filtered": 0,
+      "utility_filtered": 0
     },
     {
       "id": "zealy-explore",
@@ -29,7 +36,9 @@
       "kind": "html_links",
       "status": "allowed",
       "found": 0,
-      "noise_filtered": 0
+      "noise_filtered": 0,
+      "hard_gate_filtered": 0,
+      "utility_filtered": 0
     },
     {
       "id": "github-incentivized-testnet",
@@ -37,7 +46,9 @@
       "kind": "github_search",
       "status": "ok",
       "found": 0,
-      "noise_filtered": 0
+      "noise_filtered": 0,
+      "hard_gate_filtered": 0,
+      "utility_filtered": 0
     },
     {
       "id": "github-depin-rewards",
@@ -45,7 +56,9 @@
       "kind": "github_search",
       "status": "ok",
       "found": 1,
-      "noise_filtered": 0
+      "noise_filtered": 0,
+      "hard_gate_filtered": 0,
+      "utility_filtered": 0
     },
     {
       "id": "github-depin-points",
@@ -53,7 +66,9 @@
       "kind": "github_search",
       "status": "ok",
       "found": 0,
-      "noise_filtered": 0
+      "noise_filtered": 0,
+      "hard_gate_filtered": 0,
+      "utility_filtered": 0
     }
   ]
 }
