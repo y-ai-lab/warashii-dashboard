@@ -1,8 +1,8 @@
 # Asset Radar Source Monitor
 
-- Checked: `2026-09-10T14:08:23Z`
+- Checked: `2026-09-10T17:41:21Z`
 - Sources: **15**
-- Newly initialized: **1**
+- Newly initialized: **0**
 - Changes requiring review: **7**
 - Fetch errors: **0**
 
