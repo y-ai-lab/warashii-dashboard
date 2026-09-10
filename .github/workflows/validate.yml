@@ -6,6 +6,8 @@ on:
       - 'data/**'
       - 'scripts/validate.py'
       - 'scripts/build.mjs'
+      - 'scripts/augment.mjs'
+      - 'scripts/indexnow.mjs'
       - 'app.js'
       - 'rankings.js'
       - 'rankings/**'
@@ -20,6 +22,8 @@ on:
       - 'data/**'
       - 'scripts/validate.py'
       - 'scripts/build.mjs'
+      - 'scripts/augment.mjs'
+      - 'scripts/indexnow.mjs'
       - 'app.js'
       - 'rankings.js'
       - 'rankings/**'
@@ -52,6 +56,6 @@ jobs:
       - name: Validate opportunity database
         run: python scripts/validate.py
       - name: Check JavaScript syntax
-        run: node --check app.js && node --check rankings.js && node --check scripts/build.mjs
+        run: npm run typecheck
       - name: Build site
         run: npm run build
