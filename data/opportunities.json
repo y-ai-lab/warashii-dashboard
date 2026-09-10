@@ -1,0 +1,120 @@
+{
+  "updated_at": "2026-09-10",
+  "opportunities": [
+    {
+      "id": "mizuho-powl-20260910",
+      "title": "みずほ銀行 新規口座開設 × Powl",
+      "provider": "Powl / みずほ銀行",
+      "category": "ポイント・金融",
+      "asset_type": "金銭資産",
+      "recommendation": "GO",
+      "required_funds_yen": 0,
+      "potential_value_yen": 7500,
+      "reward_label": "75,000pt（約7,500円相当・ログイン画面で確認）",
+      "work_minutes": 30,
+      "work_time_label": "約20〜30分",
+      "acquisition_days_label": "口座開設 + 承認待ち",
+      "risk_label": "1 / 5（KYC・トラッキング）",
+      "conditions": [
+        "新規口座開設完了が成果条件",
+        "Powlの案件ページ経由でWEB申込",
+        "広告クリックから30日以内に口座開設完了",
+        "成果問い合わせに備え受付番号と申込日時を保存",
+        "ポイント成果についてみずほ銀行へ直接問い合わせない"
+      ],
+      "deadline_label": "掲載終了まで（変動あり）",
+      "mobile": "yes",
+      "conversion_route": "Powlポイント → 現金等 → Core/Growth資本 → 次の資産取得",
+      "verified_at": "2026-09-10",
+      "source_url": "https://web.powl.jp/reward/35100",
+      "source_name": "Powl案件ページ",
+      "notes": "案件ページで成果条件を確認。表示報酬75,000ptはログイン中の実画面で確認した値。実行直前に再確認する。",
+      "score_components": {
+        "initial_cost": 20,
+        "expected_value": 18,
+        "risk": 13,
+        "time_efficiency": 14,
+        "reproducibility": 2,
+        "compoundability": 4,
+        "automation": 1,
+        "mobile": 5
+      }
+    },
+    {
+      "id": "grass-depin-20260910",
+      "title": "Grass DePIN ポイント蓄積",
+      "provider": "Grass",
+      "category": "DePIN・Web3",
+      "asset_type": "権利資産",
+      "recommendation": "WATCH",
+      "required_funds_yen": 0,
+      "potential_value_yen": null,
+      "reward_label": "Grass Points（将来報酬の算定要素。金銭価値の保証なし）",
+      "work_minutes": 10,
+      "work_time_label": "初回 約5〜10分 + 稼働",
+      "acquisition_days_label": "稼働後にポイント蓄積",
+      "risk_label": "2 / 5（帯域提供・報酬不確実）",
+      "conditions": [
+        "対応端末でGrassを稼働",
+        "未使用帯域をネットワークへ提供",
+        "ポイントはUptime/Network等の貢献に応じて計算",
+        "ポイント自体に金銭価値はなく、将来報酬は保証されない"
+      ],
+      "deadline_label": "随時",
+      "mobile": "partial",
+      "conversion_route": "未使用帯域 → Points → 将来の配布資格/報酬（不確定）",
+      "verified_at": "2026-09-10",
+      "source_url": "https://www.grass.io/terms-and-conditions/",
+      "source_name": "Grass公式Terms",
+      "notes": "元本0円だが、IP/帯域提供と報酬不確実性があるためWATCH。専用端末・余剰回線での運用を優先。",
+      "score_components": {
+        "initial_cost": 20,
+        "expected_value": 10,
+        "risk": 8,
+        "time_efficiency": 14,
+        "reproducibility": 9,
+        "compoundability": 8,
+        "automation": 5,
+        "mobile": 4
+      }
+    },
+    {
+      "id": "warashii-asset-radar-mvp",
+      "title": "わらしべ Asset Radar MVP",
+      "provider": "自社/自己保有",
+      "category": "デジタル資産",
+      "asset_type": "Web・情報資産",
+      "recommendation": "GO",
+      "required_funds_yen": 0,
+      "potential_value_yen": null,
+      "reward_label": "GitHubリポジトリ + 案件DB + 将来の検索/紹介導線",
+      "work_minutes": 90,
+      "work_time_label": "初回1〜2時間、その後更新",
+      "acquisition_days_label": "即日MVP",
+      "risk_label": "0〜1 / 5",
+      "conditions": [
+        "公開情報のみ掲載し、最終確認日と一次情報URLを保存",
+        "キャンペーンは実行直前に再検証",
+        "成果保証をせず、規約違反・複垢・虚偽申告を掲載対象外にする",
+        "後から自動収集・紹介リンク・SEO導線を追加可能な構造にする"
+      ],
+      "deadline_label": "継続資産",
+      "mobile": "partial",
+      "conversion_route": "調査 → DB → Web資産 → 検索/SNS流入 → 紹介/情報資産",
+      "verified_at": "2026-09-10",
+      "source_url": "https://github.com/y-ai-lab/warashii-dashboard",
+      "source_name": "GitHubリポジトリ",
+      "notes": "現金化を急がず、調査結果そのものを再利用可能な所有資産に変換するPhase 2の中核。",
+      "score_components": {
+        "initial_cost": 20,
+        "expected_value": 12,
+        "risk": 15,
+        "time_efficiency": 11,
+        "reproducibility": 10,
+        "compoundability": 10,
+        "automation": 4,
+        "mobile": 4
+      }
+    }
+  ]
+}
