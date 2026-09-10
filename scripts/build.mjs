@@ -4,6 +4,7 @@ import { resolve } from 'node:path';
 const root = resolve(import.meta.dirname, '..');
 const output = resolve(root, 'dist');
 const BASE_URL = 'https://y-ai-lab.github.io/warashii-dashboard';
+const INDEXNOW_KEY_FILE = '295d1f0bddf4348090c0b40d61ca46c6.txt';
 const files = [
   'index.html',
   'styles.css',
@@ -12,6 +13,7 @@ const files = [
   'rankings',
   'robots.txt',
   'sitemap.xml',
+  INDEXNOW_KEY_FILE,
   'data',
 ];
 
