@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { readFile } from 'node:fs/promises';
 
@@ -6,8 +7,29 @@ const HOST = new URL(BASE_URL).host;
 const KEY = '295d1f0bddf4348090c0b40d61ca46c6';
 const KEY_LOCATION = `${BASE_URL}/${KEY}.txt`;
 
+const CATEGORY_SLUGS = {
+  'ポイント・金融': 'finance-points',
+  '少額投資・キャンペーン': 'small-investment',
+  'DePIN・Web3': 'web3-depin',
+  '無料デジタル資産': 'digital-assets',
+  'デジタル資産': 'owned-digital-assets',
+};
+
+function categorySlug(category) {
+  if (CATEGORY_SLUGS[category]) return CATEGORY_SLUGS[category];
+  return `category-${createHash('sha1').update(category).digest('hex').slice(0, 10)}`;
+}
+
 function detailUrl(id) {
   return `${BASE_URL}/opportunities/${encodeURIComponent(id)}.html`;
+}
+
+function categoryUrls(items) {
+  const categories = [...new Set(items.map(item => item.category))];
+  return [
+    `${BASE_URL}/categories/`,
+    ...categories.map(category => `${BASE_URL}/categories/${categorySlug(category)}.html`),
+  ];
 }
 
 function readOldOpportunities() {
@@ -41,14 +63,22 @@ const rankings = [
   `${BASE_URL}/rankings/top-score.html`,
   `${BASE_URL}/rankings/review.html`,
 ];
-
+const feed = `${BASE_URL}/feed.xml`;
 const allCurrentDetailUrls = current.map(item => detailUrl(item.id));
-const forceFullSubmission = !previous || files.includes('scripts/build.mjs') || files.includes('scripts/indexnow.mjs');
+const allCategoryUrls = categoryUrls(current);
+const forceFullSubmission = !previous || files.some(file => [
+  'scripts/build.mjs',
+  'scripts/augment.mjs',
+  'scripts/indexnow.mjs',
+  'package.json',
+].includes(file));
 
 if (forceFullSubmission) {
   urls.add(`${BASE_URL}/`);
   rankings.forEach(url => urls.add(url));
+  allCategoryUrls.forEach(url => urls.add(url));
   allCurrentDetailUrls.forEach(url => urls.add(url));
+  urls.add(feed);
 } else {
   if (files.some(file => ['index.html', 'app.js'].includes(file))) {
     urls.add(`${BASE_URL}/`);
@@ -61,12 +91,15 @@ if (forceFullSubmission) {
   if (files.includes('styles.css')) {
     urls.add(`${BASE_URL}/`);
     rankings.forEach(url => urls.add(url));
+    allCategoryUrls.forEach(url => urls.add(url));
     allCurrentDetailUrls.forEach(url => urls.add(url));
   }
 
   if (files.includes('data/opportunities.json')) {
     urls.add(`${BASE_URL}/`);
     rankings.forEach(url => urls.add(url));
+    allCategoryUrls.forEach(url => urls.add(url));
+    urls.add(feed);
 
     const oldMap = new Map(previous.map(item => [item.id, JSON.stringify(item)]));
     const newMap = new Map(current.map(item => [item.id, JSON.stringify(item)]));
