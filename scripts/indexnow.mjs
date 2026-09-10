@@ -11,6 +11,7 @@ const CATEGORY_SLUGS = {
   'ポイント・金融': 'finance-points',
   '少額投資・キャンペーン': 'small-investment',
   'DePIN・Web3': 'web3-depin',
+  'Airdrop・Testnet': 'airdrop-testnet',
   '無料デジタル資産': 'digital-assets',
   'デジタル資産': 'owned-digital-assets',
 };
