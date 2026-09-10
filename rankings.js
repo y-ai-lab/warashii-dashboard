@@ -37,6 +37,10 @@ function mobileLabel(value) {
   return ({ yes: '◎', partial: '○ 一部PC推奨', no: '×' })[value] ?? value;
 }
 
+function detailHref(item) {
+  return `../opportunities/${encodeURIComponent(item.id)}.html`;
+}
+
 function recommendationWeight(value) {
   return ({ GO: 3, WATCH: 2, STOP: 1 })[value] ?? 0;
 }
@@ -115,7 +119,10 @@ function renderCard(item, index) {
 
   const title = document.createElement('h2');
   title.className = 'title';
-  title.textContent = item.title;
+  const titleLink = document.createElement('a');
+  titleLink.href = detailHref(item);
+  titleLink.textContent = item.title;
+  title.appendChild(titleLink);
 
   const provider = document.createElement('p');
   provider.className = 'provider';
@@ -177,13 +184,21 @@ function renderCard(item, index) {
   const verified = document.createElement('span');
   verified.className = 'verified';
   verified.textContent = `最終確認：${item.verified_at ?? '未確認'}`;
+
+  const links = document.createElement('span');
+  const detail = document.createElement('a');
+  detail.className = 'source';
+  detail.href = detailHref(item);
+  detail.textContent = '詳細';
+  const separator = document.createTextNode(' ・ ');
   const source = document.createElement('a');
   source.className = 'source';
   source.href = item.source_url;
   source.target = '_blank';
   source.rel = 'noopener noreferrer';
   source.textContent = item.source_name ?? '一次情報';
-  footer.append(verified, source);
+  links.append(detail, separator, source);
+  footer.append(verified, links);
 
   article.append(top, reward, facts, conversion, details, footer);
   return article;
