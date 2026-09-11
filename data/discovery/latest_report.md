@@ -1,9 +1,9 @@
 # Opportunity Discovery
 
-- Checked: `2026-09-10T16:40:54Z`
+- Checked: `2026-09-11T16:45:19Z`
 - Discovery sources: **6**
 - New review candidates: **0**
-- Queue total: **1**
+- Queue total: **3**
 - Navigation/noise filtered: **2**
 - Hard Gate filtered: **0**
 - Utility-only filtered: **0**
