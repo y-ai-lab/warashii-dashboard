@@ -1,15 +1,22 @@
 # Asset Radar Source Monitor
 
-- Checked: `2026-09-10T23:05:30Z`
+- Checked: `2026-09-11T17:44:20Z`
 - Sources: **15**
 - Newly initialized: **0**
-- Fingerprints migrated: **15**
-- Changes requiring review: **0**
+- Fingerprints migrated: **0**
+- Changes requiring review: **4**
 - Fetch errors: **0**
 
 ## Changes requiring human review
 
-None.
+- **SBI新生銀行 新規口座開設 × モッピー** — `material_content_changed` / `moppy_campaign_terms`
+  - https://pc.moppy.jp/ad/detail.php?site_id=142543
+- **三井住友銀行 Olive 新規口座開設 × モッピー** — `material_content_changed` / `moppy_campaign_terms`
+  - https://pc.moppy.jp/ad/detail.php?site_id=155058
+- **松井証券 無料口座開設 × モッピー** — `material_content_changed` / `moppy_campaign_terms`
+  - https://pc.moppy.jp/ad/detail.php?s_id=129569
+- **Alterna Bank 1万円投資 × モッピー** — `material_content_changed` / `moppy_campaign_terms`
+  - https://pc.moppy.jp/ad/detail.php?site_id=161120
 
 ## Skipped by robots.txt
 
