@@ -1,14 +1,16 @@
 # Asset Radar Source Monitor
 
-- Checked: `2026-09-18T17:40:12Z`
+- Checked: `2026-09-19T17:16:01Z`
 - Sources: **15**
 - Newly initialized: **0**
 - Fingerprints migrated: **0**
-- Changes requiring review: **1**
+- Changes requiring review: **2**
 - Fetch errors: **0**
 
 ## Changes requiring human review
 
+- **SBI新生銀行 新規口座開設 × モッピー** — `material_content_changed` / `moppy_campaign_terms`
+  - https://pc.moppy.jp/ad/detail.php?site_id=142543
 - **三井住友銀行 Olive 新規口座開設 × モッピー** — `material_content_changed` / `moppy_campaign_terms`
   - https://pc.moppy.jp/ad/detail.php?site_id=155058
 
