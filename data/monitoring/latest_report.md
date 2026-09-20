@@ -1,6 +1,6 @@
 # Asset Radar Source Monitor
 
-- Checked: `2026-09-19T17:16:01Z`
+- Checked: `2026-09-20T17:27:31Z`
 - Sources: **15**
 - Newly initialized: **0**
 - Fingerprints migrated: **0**
@@ -9,10 +9,10 @@
 
 ## Changes requiring human review
 
-- **SBI新生銀行 新規口座開設 × モッピー** — `material_content_changed` / `moppy_campaign_terms`
-  - https://pc.moppy.jp/ad/detail.php?site_id=142543
 - **三井住友銀行 Olive 新規口座開設 × モッピー** — `material_content_changed` / `moppy_campaign_terms`
   - https://pc.moppy.jp/ad/detail.php?site_id=155058
+- **Supabase Free でPostgres/API資産を確保** — `material_content_changed` / `full_visible_text`
+  - https://supabase.com/pricing
 
 ## Skipped by robots.txt
 
