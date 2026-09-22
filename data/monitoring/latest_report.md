@@ -1,16 +1,18 @@
 # Asset Radar Source Monitor
 
-- Checked: `2026-09-21T19:24:11Z`
+- Checked: `2026-09-22T18:04:02Z`
 - Sources: **15**
 - Newly initialized: **0**
 - Fingerprints migrated: **0**
-- Changes requiring review: **2**
+- Changes requiring review: **3**
 - Fetch errors: **0**
 
 ## Changes requiring human review
 
 - **三井住友銀行 Olive 新規口座開設 × モッピー** — `material_content_changed` / `moppy_campaign_terms`
   - https://pc.moppy.jp/ad/detail.php?site_id=155058
+- **松井証券 無料口座開設 × モッピー** — `material_content_changed` / `moppy_campaign_terms`
+  - https://pc.moppy.jp/ad/detail.php?s_id=129569
 - **Supabase Free でPostgres/API資産を確保** — `material_content_changed` / `full_visible_text`
   - https://supabase.com/pricing
 
