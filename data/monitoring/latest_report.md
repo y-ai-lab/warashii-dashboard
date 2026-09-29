@@ -1,24 +1,18 @@
 # Asset Radar Source Monitor
 
-- Checked: `2026-09-28T20:32:26Z`
+- Checked: `2026-09-29T19:23:36Z`
 - Sources: **15**
 - Newly initialized: **0**
 - Fingerprints migrated: **0**
-- Changes requiring review: **6**
+- Changes requiring review: **3**
 - Fetch errors: **0**
 
 ## Changes requiring human review
 
-- **SBI新生銀行 新規口座開設 × モッピー** — `material_content_changed` / `moppy_campaign_terms`
-  - https://pc.moppy.jp/ad/detail.php?site_id=142543
 - **三井住友銀行 Olive 新規口座開設 × モッピー** — `material_content_changed` / `moppy_campaign_terms`
   - https://pc.moppy.jp/ad/detail.php?site_id=155058
 - **松井証券 無料口座開設 × モッピー** — `material_content_changed` / `moppy_campaign_terms`
   - https://pc.moppy.jp/ad/detail.php?s_id=129569
-- **Alterna Bank 1万円投資 × モッピー** — `material_content_changed` / `moppy_campaign_terms`
-  - https://pc.moppy.jp/ad/detail.php?site_id=161120
-- **DeNet Watcher Node** — `status: ok → robots_blocked` / `robots_blocked`
-  - https://docs.denet.pro/watcher.html
 - **Supabase Free でPostgres/API資産を確保** — `material_content_changed` / `full_visible_text`
   - https://supabase.com/pricing
 
