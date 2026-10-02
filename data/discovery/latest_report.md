@@ -1,6 +1,6 @@
 # Opportunity Discovery
 
-- Checked: `2026-10-01T18:34:15Z`
+- Checked: `2026-10-02T18:01:37Z`
 - Discovery sources: **6**
 - New review candidates: **0**
 - Queue total: **3**
