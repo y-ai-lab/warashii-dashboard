@@ -1,14 +1,16 @@
 # Asset Radar Source Monitor
 
-- Checked: `2026-10-03T17:56:23Z`
+- Checked: `2026-10-04T18:08:53Z`
 - Sources: **15**
 - Newly initialized: **0**
 - Fingerprints migrated: **0**
-- Changes requiring review: **3**
-- Fetch errors: **0**
+- Changes requiring review: **4**
+- Fetch errors: **1**
 
 ## Changes requiring human review
 
+- **みずほ銀行 新規口座開設 × Powl** — `status: ok → http_error` / `fetch_failed`
+  - https://web.powl.jp/reward/35100
 - **SBI新生銀行 新規口座開設 × モッピー** — `material_content_changed` / `moppy_campaign_terms`
   - https://pc.moppy.jp/ad/detail.php?site_id=142543
 - **三井住友銀行 Olive 新規口座開設 × モッピー** — `material_content_changed` / `moppy_campaign_terms`
@@ -27,6 +29,10 @@
 ## Self-managed sources
 
 - **わらしべ Asset Radar MVP** — internal repository changes do not trigger external-condition alerts
+
+## Fetch errors
+
+- **みずほ銀行 新規口座開設 × Powl** — HTTP 404 — https://web.powl.jp/reward/35100
 
 ## Policy
 
