@@ -1,6 +1,6 @@
 # Asset Radar Source Monitor
 
-- Checked: `2026-10-04T18:08:53Z`
+- Checked: `2026-10-05T21:28:33Z`
 - Sources: **15**
 - Newly initialized: **0**
 - Fingerprints migrated: **0**
@@ -9,14 +9,14 @@
 
 ## Changes requiring human review
 
-- **みずほ銀行 新規口座開設 × Powl** — `status: ok → http_error` / `fetch_failed`
-  - https://web.powl.jp/reward/35100
 - **SBI新生銀行 新規口座開設 × モッピー** — `material_content_changed` / `moppy_campaign_terms`
   - https://pc.moppy.jp/ad/detail.php?site_id=142543
 - **三井住友銀行 Olive 新規口座開設 × モッピー** — `material_content_changed` / `moppy_campaign_terms`
   - https://pc.moppy.jp/ad/detail.php?site_id=155058
-- **松井証券 無料口座開設 × モッピー** — `material_content_changed` / `moppy_campaign_terms`
-  - https://pc.moppy.jp/ad/detail.php?s_id=129569
+- **Altitude Incentivized Testnet** — `material_content_changed` / `full_visible_text`
+  - https://app.galxe.com/quest/altitude
+- **Supabase Free でPostgres/API資産を確保** — `material_content_changed` / `full_visible_text`
+  - https://supabase.com/pricing
 
 ## Skipped by robots.txt
 
