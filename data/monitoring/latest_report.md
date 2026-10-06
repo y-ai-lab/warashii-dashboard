@@ -1,10 +1,10 @@
 # Asset Radar Source Monitor
 
-- Checked: `2026-10-05T21:28:33Z`
+- Checked: `2026-10-06T19:30:30Z`
 - Sources: **15**
 - Newly initialized: **0**
 - Fingerprints migrated: **0**
-- Changes requiring review: **4**
+- Changes requiring review: **3**
 - Fetch errors: **1**
 
 ## Changes requiring human review
@@ -13,8 +13,6 @@
   - https://pc.moppy.jp/ad/detail.php?site_id=142543
 - **三井住友銀行 Olive 新規口座開設 × モッピー** — `material_content_changed` / `moppy_campaign_terms`
   - https://pc.moppy.jp/ad/detail.php?site_id=155058
-- **Altitude Incentivized Testnet** — `material_content_changed` / `full_visible_text`
-  - https://app.galxe.com/quest/altitude
 - **Supabase Free でPostgres/API資産を確保** — `material_content_changed` / `full_visible_text`
   - https://supabase.com/pricing
 
